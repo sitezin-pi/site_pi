@@ -1,0 +1,324 @@
+/* From Uiverse.io by Phelix652 */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 0.4em;
+    background-color: #171717;
+    border-radius: 20px;
+  }
+ 
+  #heading {
+    text-align: center;
+    margin: 2em;
+    color: rgb(0, 255, 200);
+    font-size: 1.2em;
+  }
+ 
+  .field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border-radius: 25px;
+    padding: 0.6em;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: #171717;
+    box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  }
+ 
+  .input-icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: rgb(0, 255, 200);
+  }
+ 
+  .input-field {
+    background: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    color: rgb(0, 255, 200);
+  }
+ 
+  .form .btn {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin-top: 2.5em;
+  }
+ 
+  .button1 {
+    padding: 0.5em;
+    padding-left: 1.1em;
+    padding-right: 1.1em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    color: rgb(0, 0, 0);
+  }
+ 
+  .button1:hover {
+    background-image: linear-gradient(163deg, #00642f 0%, #13034b 100%);
+    color: rgb(0, 255, 200);
+  }
+ 
+  .button2 {
+    padding: 0.5em;
+    padding-left: 2.3em;
+    padding-right: 2.3em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    color: rgb(0, 0, 0);
+  }
+ 
+  .button2:hover {
+    background-image: linear-gradient(163deg, #00642f 0%, #13034b 100%);
+    color: rgb(0, 255, 200);
+  }
+ 
+  .button3 {
+    margin-bottom: 3em;
+    padding: 0.5em;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    transition: .4s ease-in-out;
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    color: rgb(0, 0, 0);
+  }
+ 
+  .button3:hover {
+    background-image: linear-gradient(163deg, #a00000fa 0%, #d10050 100%);
+    color: rgb(255, 255, 255);
+  }
+ 
+  .card {
+    background-image: linear-gradient(163deg, #00ff75 0%, #3700ff 100%);
+    border-radius: 22px;
+    transition: all .3s;
+  }
+ 
+  .card2 {
+    border-radius: 0;
+    transition: all .2s;
+  }
+ 
+  .card2:hover {
+    transform: scale(0.98);
+    border-radius: 20px;
+  }
+ 
+  .card:hover {
+    box-shadow: 0px 0px 30px 1px rgba(0, 255, 117, 0.30);
+  }
+ 
+
+/* Cart page */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #0f0f0f;
+  color: #eaeaea;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.cart-card {
+  background: #171717;
+  padding: 22px;
+  width: min(720px, 92vw);
+  border-radius: 20px;
+}
+
+.cart-title {
+  margin: 0 0 12px;
+  font-size: 28px;
+}
+
+.cart-empty {
+  margin: 12px 0;
+  opacity: 0.9;
+}
+
+.cart-list {
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: #1f1f1f;
+}
+
+.cart-item-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.cart-item-meta {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.cart-total {
+  margin: 12px 0 0;
+  font-weight: 700;
+}
+
+.cart-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: #141414;
+  color: #eaeaea;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.btn-danger {
+  border-color: rgba(255, 80, 80, 0.35);
+  background: rgba(255, 80, 80, 0.14);
+}
+
+.btn-danger:hover {
+  border-color: rgba(255, 80, 80, 0.55);
+}
+
+ul {
+  list-style: none;
+}
+
+.example-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.example-2 .icon-content {
+  margin: 0 10px;
+  position: relative;
+}
+.example-2 .icon-content .tooltip {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+.example-2 .icon-content:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  top: -50px;
+}
+.example-2 .icon-content a {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  color: #4d4d4d;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover {
+  box-shadow: 3px 2px 45px 0px rgb(0 0 0 / 12%);
+}
+.example-2 .icon-content a svg {
+  position: relative;
+  z-index: 1;
+  width: 30px;
+  height: 30px;
+}
+.example-2 .icon-content a:hover {
+  color: white;
+}
+.example-2 .icon-content a .filled {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background-color: #000;
+  transition: all 0.3s ease-in-out;
+}
+.example-2 .icon-content a:hover .filled {
+  height: 100%;
+}
+
+.example-2 .icon-content a[data-social="whatsapp"] .filled,
+.example-2 .icon-content a[data-social="whatsapp"] ~ .tooltip {
+  background-color: #128c7e;
+}
+
+.example-2 .icon-content a[data-social="facebook"] .filled,
+.example-2 .icon-content a[data-social="facebook"] ~ .tooltip {
+  background-color: #3b5998;
+}
+.example-2 .icon-content a[data-social="instagram"] .filled,
+.example-2 .icon-content a[data-social="instagram"] ~ .tooltip {
+  background: linear-gradient(
+    45deg,
+    #405de6,
+    #5b51db,
+    #b33ab4,
+    #c135b4,
+    #e1306c,
+    #fd1f1f
+  );
+}
+.example-2 .icon-content a[data-social="youtube"] .filled,
+.example-2 .icon-content a[data-social="youtube"] ~ .tooltip {
+  background-color: #ff0000;
+}
+
+
