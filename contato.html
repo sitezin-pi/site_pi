@@ -93,12 +93,12 @@
 
         button {
             width: 100%;
-            padding: 14px;
+            padding: 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1.05em;
+            font-size: 1.2em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -191,6 +191,27 @@
             }
         }
 
+        .back-button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            margin-top: 30px;
+            width: auto;
+            display: inline-block;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+        }
+
         @media (max-width: 600px) {
             .header h1 {
                 font-size: 2em;
@@ -203,13 +224,18 @@
             .header {
                 padding: 30px 20px;
             }
+
+            .back-button {
+                padding: 10px 24px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1> Play Zone</h1>
+            <h1>🎮 Play Zone</h1>
             <p>Entre em contato conosco</p>
         </div>
 
@@ -277,6 +303,9 @@
                         Segunda a Sexta: 9h às 18h
                     </div>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="back-button" onclick="window.location.href='ativis.html'">Voltar</button>
             </div>
         </div>
     </div>
