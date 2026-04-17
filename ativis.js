@@ -208,6 +208,204 @@ function parseBRLLikeNumber(text) {
   return Number.isFinite(n) ? n : NaN;
 }
 
+function parseRangeValue(value) {
+  const raw = String(value || "").trim();
+  if (!raw || raw === "all") return null;
+
+  const parts = raw.split("-").map((x) => Number(x));
+  if (parts.length !== 2) return null;
+  const [min, max] = parts;
+  if (!Number.isFinite(min) || !Number.isFinite(max)) return null;
+  return { min, max };
+}
+
+function setupCatalogPriceFilter({ selectId, resultId, cardSelector, getPrice, onAfterFilter }) {
+  const select = document.getElementById(selectId);
+  const result = document.getElementById(resultId);
+  if (!select) return;
+
+  function apply() {
+    const range = parseRangeValue(select.value);
+    const cards = Array.from(document.querySelectorAll(cardSelector));
+    let visible = 0;
+
+    for (const card of cards) {
+      const price = getPrice(card);
+      const inRange =
+        !range ||
+        (Number.isFinite(price) && price >= range.min && price <= range.max);
+
+      card.hidden = !inRange;
+      if (inRange) visible++;
+      else {
+        const compareCheck = card.querySelector?.(".console-compare-check");
+        if (compareCheck && compareCheck.checked) compareCheck.checked = false;
+      }
+    }
+
+    if (result) {
+      const label = visible === 1 ? "item" : "itens";
+      result.textContent = range
+        ? `Mostrando ${visible} ${label} na faixa selecionada`
+        : `Mostrando todos (${visible} ${label})`;
+    }
+
+    try {
+      onAfterFilter?.();
+    } catch {
+      // ignore
+    }
+  }
+
+  select.addEventListener("change", apply);
+  apply();
+}
+
+function setupGameCatalogFilter() {
+  setupCatalogPriceFilter({
+    selectId: "gamePriceFilter",
+    resultId: "gameFilterResult",
+    cardSelector: ".produtos .produto",
+    getPrice: (card) => {
+      const explicit = Number(card.getAttribute("data-price"));
+      if (Number.isFinite(explicit) && explicit > 0) return explicit;
+
+      const priceEl = Array.from(card.querySelectorAll("p")).find((p) =>
+        String(p.textContent || "").includes("R$")
+      );
+      return parseBRLLikeNumber(priceEl?.textContent);
+    },
+  });
+}
+
+setupGameCatalogFilter();
+
+function setupConsoleCatalogFilter() {
+  setupCatalogPriceFilter({
+    selectId: "consolePriceFilter",
+    resultId: "consoleFilterResult",
+    cardSelector: '.consoles [data-console-card], .consoles .card[data-console-card]',
+    getPrice: (card) => {
+      const explicit = Number(card.getAttribute("data-price"));
+      if (Number.isFinite(explicit) && explicit > 0) return explicit;
+
+      const priceText = card.querySelector?.(".card-text")?.textContent;
+      return parseBRLLikeNumber(priceText);
+    },
+    onAfterFilter: () => {
+      window.dispatchEvent(new Event("consoleCompare:update"));
+    },
+  });
+}
+
+setupConsoleCatalogFilter();
+
+function createEl(tag, attrs = {}, children = []) {
+  const el = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs || {})) {
+    if (v == null) continue;
+    if (k === "class") el.className = String(v);
+    else if (k === "text") el.textContent = String(v);
+    else el.setAttribute(k, String(v));
+  }
+  for (const child of children) {
+    if (child == null) continue;
+    if (typeof child === "string") el.appendChild(document.createTextNode(child));
+    else el.appendChild(child);
+  }
+  return el;
+}
+
+function setupConsoleCompare() {
+  const grid = document.getElementById("consoleCompareGrid");
+  if (!grid) return;
+
+  const clearBtn = document.getElementById("clearConsoleCompare");
+  const checks = Array.from(document.querySelectorAll(".console-compare-check"));
+
+  function getSelectedCards() {
+    return checks
+      .filter((c) => c && c.checked)
+      .map((c) => c.closest?.("[data-console-card]"))
+      .filter(Boolean);
+  }
+
+  function enforceLimit(lastChanged = null) {
+    const selected = checks.filter((c) => c && c.checked);
+    if (selected.length <= 2) return;
+
+    // Prefer unchecking the last changed box, otherwise uncheck extras.
+    if (lastChanged && lastChanged.checked) {
+      lastChanged.checked = false;
+      return;
+    }
+
+    for (let i = 2; i < selected.length; i++) selected[i].checked = false;
+  }
+
+  function renderPlaceholders() {
+    grid.replaceChildren(
+      createEl("article", { class: "compare-placeholder", text: "Selecione um console para comparar." }),
+      createEl("article", { class: "compare-placeholder", text: "Selecione um segundo console." })
+    );
+  }
+
+  function render() {
+    enforceLimit();
+    const selected = getSelectedCards();
+
+    if (selected.length === 0) {
+      renderPlaceholders();
+      return;
+    }
+
+    const cards = selected.slice(0, 2).map((card) => {
+      const name = card.querySelector?.(".card-title")?.textContent?.trim() || "Console";
+      const imgSrc = card.querySelector?.("img")?.getAttribute?.("src") || "";
+      const imgAlt = card.querySelector?.("img")?.getAttribute?.("alt") || name;
+      const priceText = card.querySelector?.(".card-text")?.textContent?.trim() || "";
+      const performance = card.getAttribute("data-performance") || "-";
+      const storage = card.getAttribute("data-storage") || "-";
+      const mode = card.getAttribute("data-mode") || "-";
+      const audience = card.getAttribute("data-audience") || "-";
+
+      const specs = createEl("ul", { class: "compare-specs" }, [
+        createEl("li", {}, [createEl("strong", { text: "Preço: " }), priceText || "-"]),
+        createEl("li", {}, [createEl("strong", { text: "Desempenho: " }), performance]),
+        createEl("li", {}, [createEl("strong", { text: "Armazenamento: " }), storage]),
+        createEl("li", {}, [createEl("strong", { text: "Modo: " }), mode]),
+        createEl("li", {}, [createEl("strong", { text: "Perfil: " }), audience]),
+      ]);
+
+      return createEl("article", { class: "compare-card" }, [
+        imgSrc ? createEl("img", { src: imgSrc, alt: imgAlt, loading: "lazy" }) : null,
+        createEl("h3", { text: name }),
+        specs,
+      ]);
+    });
+
+    if (cards.length === 1) cards.push(createEl("article", { class: "compare-placeholder", text: "Selecione um segundo console." }));
+    grid.replaceChildren(...cards);
+  }
+
+  for (const check of checks) {
+    check.addEventListener("change", (e) => {
+      enforceLimit(e.target);
+      render();
+    });
+  }
+
+  clearBtn?.addEventListener("click", () => {
+    for (const check of checks) check.checked = false;
+    render();
+  });
+
+  window.addEventListener("consoleCompare:update", render);
+  render();
+}
+
+setupConsoleCompare();
+
 function setupConsoleBuy() {
   document.addEventListener("click", (e) => {
     const target = e.target;
