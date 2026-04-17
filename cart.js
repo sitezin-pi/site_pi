@@ -1,5 +1,5 @@
 // Simple cart persistence using localStorage (no backend).
-// Stored shape: [{ id, name, price, qty }]
+// Stored shape: [{ id, name, price, qty, image }]
 
 (function () {
   const CART_KEY = "gamestore_cart_v1";
@@ -32,9 +32,21 @@
     return `${String(name).trim()}__${Number(price).toFixed(2)}`;
   }
 
-  function addItem(name, price, qty = 1) {
+  function normalizeOptions(qtyOrOptions, maybeOptions) {
+    if (typeof qtyOrOptions === "object" && qtyOrOptions !== null) {
+      return { qty: Number(qtyOrOptions.qty ?? 1), image: qtyOrOptions.image || "" };
+    }
+
+    return {
+      qty: Number(qtyOrOptions ?? 1),
+      image: maybeOptions?.image || "",
+    };
+  }
+
+  function addItem(name, price, qtyOrOptions = 1, maybeOptions = null) {
     const p = Number(price);
-    const q = Number(qty);
+    const options = normalizeOptions(qtyOrOptions, maybeOptions);
+    const q = Number(options.qty);
     if (!name || !Number.isFinite(p) || !Number.isFinite(q) || q <= 0) return;
 
     const items = load();
@@ -42,8 +54,15 @@
     const existing = items.find((x) => x && x.id === id);
     if (existing) {
       existing.qty = Number(existing.qty || 0) + q;
+      if (!existing.image && options.image) existing.image = options.image;
     } else {
-      items.push({ id, name: String(name), price: p, qty: q });
+      items.push({
+        id,
+        name: String(name),
+        price: p,
+        qty: q,
+        image: options.image || "",
+      });
     }
     save(items);
   }
@@ -55,6 +74,23 @@
 
   function clear() {
     save([]);
+  }
+
+  function setQty(id, qty) {
+    const nextQty = Number(qty);
+    if (!Number.isFinite(nextQty)) return;
+
+    if (nextQty <= 0) {
+      removeItem(id);
+      return;
+    }
+
+    const items = load();
+    const existing = items.find((x) => x && x.id === id);
+    if (!existing) return;
+
+    existing.qty = nextQty;
+    save(items);
   }
 
   function getTotal(items) {
@@ -97,6 +133,7 @@
     save,
     addItem,
     removeItem,
+    setQty,
     clear,
     getTotal,
     getCount,
