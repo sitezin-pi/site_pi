@@ -13,39 +13,43 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4a5568; /* Cor de fundo baseada na imagem */
+            background: linear-gradient(180deg, #53575f 0%, #2d3748 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            color: #ffffff;
         }
 
         .container {
-            background: white;
+            background: #252525; /* Fundo escuro dos cards */
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             max-width: 600px;
             width: 100%;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #333a45; /* Cabeçalho levemente mais claro */
             color: white;
             padding: 40px 30px;
             text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .header p {
             font-size: 1.1em;
-            opacity: 0.9;
+            opacity: 0.8;
         }
 
         .content {
@@ -59,7 +63,7 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #333;
+            color: #e2e8f0;
             font-weight: 600;
             font-size: 0.95em;
         }
@@ -70,10 +74,12 @@
         textarea {
             width: 100%;
             padding: 12px 15px;
-            border: 2px solid #e0e0e0;
+            border: 1px solid #444;
+            background-color: #1a1a1a;
             border-radius: 8px;
             font-size: 1em;
             font-family: inherit;
+            color: white;
             transition: all 0.3s ease;
         }
 
@@ -82,8 +88,8 @@
         input[type="tel"]:focus,
         textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            border-color: #38a169; /* Verde de destaque */
+            box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.2);
         }
 
         textarea {
@@ -94,7 +100,7 @@
         button {
             width: 100%;
             padding: 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #38a169; /* Verde dos botões "Adicionar" */
             color: white;
             border: none;
             border-radius: 8px;
@@ -102,12 +108,13 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         button:hover {
+            background: #2f855a;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
         }
 
         button:active {
@@ -117,11 +124,11 @@
         .info-section {
             margin-top: 30px;
             padding-top: 30px;
-            border-top: 2px solid #e0e0e0;
+            border-top: 1px solid #444;
         }
 
         .info-section h3 {
-            color: #333;
+            color: #e2e8f0;
             margin-bottom: 20px;
             font-size: 1.2em;
         }
@@ -130,13 +137,13 @@
             display: flex;
             align-items: center;
             margin-bottom: 15px;
-            color: #555;
+            color: #cbd5e0;
         }
 
         .info-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4a5568;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -148,19 +155,20 @@
         }
 
         .info-item a {
-            color: #667eea;
+            color: #38a169;
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s ease;
         }
 
         .info-item a:hover {
-            color: #764ba2;
+            color: #48bb78;
+            text-decoration: underline;
         }
 
         .success-message {
             display: none;
-            background: #4caf50;
+            background: #38a169;
             color: white;
             padding: 15px;
             border-radius: 8px;
@@ -171,7 +179,7 @@
 
         .error-message {
             display: none;
-            background: #f44336;
+            background: #e53e3e;
             color: white;
             padding: 15px;
             border-radius: 8px;
@@ -192,7 +200,7 @@
         }
 
         .back-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #4a5568;
             color: white;
             border: none;
             padding: 12px 32px;
@@ -201,15 +209,15 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
             margin-top: 30px;
             width: auto;
             display: inline-block;
         }
 
         .back-button:hover {
+            background: #2d3748;
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         @media (max-width: 600px) {
