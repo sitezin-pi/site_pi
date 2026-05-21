@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #4a5568; /* Cor de fundo baseada na imagem */
+            background: #4a5568;
             background: linear-gradient(180deg, #53575f 0%, #2d3748 100%);
             min-height: 100vh;
             display: flex;
@@ -24,7 +24,7 @@
         }
 
         .container {
-            background: #252525; /* Fundo escuro dos cards */
+            background: #252525;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
             max-width: 600px;
@@ -34,7 +34,7 @@
         }
 
         .header {
-            background: #333a45; /* Cabeçalho levemente mais claro */
+            background: #333a45;
             color: white;
             padding: 40px 30px;
             text-align: center;
@@ -88,7 +88,7 @@
         input[type="tel"]:focus,
         textarea:focus {
             outline: none;
-            border-color: #38a169; /* Verde de destaque */
+            border-color: #38a169;
             box-shadow: 0 0 0 3px rgba(56, 161, 105, 0.2);
         }
 
@@ -100,7 +100,7 @@
         button {
             width: 100%;
             padding: 18px;
-            background: #38a169; /* Verde dos botões "Adicionar" */
+            background: #38a169;
             color: white;
             border: none;
             border-radius: 8px;
@@ -243,17 +243,17 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎮 Play Zone</h1>
+            <h1>&#127918; Play Zone</h1>
             <p>Entre em contato conosco</p>
         </div>
 
         <div class="content">
             <div id="successMessage" class="success-message">
-                ✓ Mensagem enviada com sucesso!
+                &#10003; Mensagem enviada com sucesso!
             </div>
 
             <div id="errorMessage" class="error-message">
-                ✗ Erro ao enviar mensagem. Tente novamente.
+                &#10007; Erro ao enviar mensagem. Tente novamente.
             </div>
 
             <form id="formulario">
@@ -286,10 +286,10 @@
             </form>
 
             <div class="info-section">
-                <h3>Informações de Contato</h3>
-                
+                <h3>Informa&ccedil;&otilde;es de Contato</h3>
+
                 <div class="info-item">
-                    <div class="info-icon">✉️</div>
+                    <div class="info-icon">&#9993;&#65039;</div>
                     <div>
                         <strong>E-mail:</strong><br>
                         <a href="mailto:playzone@gmail.com">playzone@gmail.com</a>
@@ -297,23 +297,24 @@
                 </div>
 
                 <div class="info-item">
-                    <div class="info-icon">📱</div>
+                    <div class="info-icon">&#128241;</div>
                     <div>
                         <strong>WhatsApp:</strong><br>
-                        <a href="https://wa.me/5511999999999" target="_blank">Clique aqui para conversar</a>
+                        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">Clique aqui para conversar</a>
                     </div>
                 </div>
 
                 <div class="info-item">
-                    <div class="info-icon">⏰</div>
+                    <div class="info-icon">&#9200;</div>
                     <div>
-                        <strong>Horário de Atendimento:</strong><br>
-                        Segunda a Sexta: 9h às 18h
+                        <strong>Hor&aacute;rio de Atendimento:</strong><br>
+                        Segunda a Sexta: 9h &agrave;s 18h
                     </div>
                 </div>
             </div>
+
             <div style="text-align: center; margin-top: 30px;">
-                <button class="back-button" onclick="window.location.href='ativis.html'">Voltar</button>
+                <button class="back-button" type="button" onclick="window.location.href='ativis.html'">Voltar</button>
             </div>
         </div>
     </div>
@@ -326,20 +327,27 @@
         formulario.addEventListener('submit', function(evento) {
             evento.preventDefault();
 
-            var nome = document.getElementById('nome').value;
-            var email = document.getElementById('email').value;
-            var telefone = document.getElementById('telefone').value;
-            var assunto = document.getElementById('assunto').value;
-            var mensagem = document.getElementById('mensagem').value;
+            var nome = document.getElementById('nome').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var telefone = document.getElementById('telefone').value.trim();
+            var assunto = document.getElementById('assunto').value.trim();
+            var mensagem = document.getElementById('mensagem').value.trim();
 
             if (nome && email && assunto && mensagem) {
                 successMessage.style.display = 'block';
                 errorMessage.style.display = 'none';
 
+                var corpoEmail = 'Nome: ' + nome +
+                    '\nE-mail: ' + email +
+                    '\nTelefone: ' + telefone +
+                    '\n\nMensagem:\n' + mensagem;
+
+                var linkEmail = 'mailto:playzone@gmail.com?subject=' +
+                    encodeURIComponent(assunto) +
+                    '&body=' +
+                    encodeURIComponent(corpoEmail);
+
                 formulario.reset();
-
-                var linkEmail = 'mailto:playzone@gmail.com?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent('Nome: ' + nome + '\nE-mail: ' + email + '\nTelefone: ' + telefone + '\n\nMensagem:\n' + mensagem);
-
                 window.location.href = linkEmail;
 
                 setTimeout(function() {
