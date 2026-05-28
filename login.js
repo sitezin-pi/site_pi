@@ -27,7 +27,7 @@ loginForm.addEventListener("submit", async function (event) {
       message.textContent = data.message || "E-mail ou senha inválidos.";
       message.className = "error";
       return;
-    }
+    } 
 
     message.textContent = "Login realizado com sucesso!";
     message.className = "success";
