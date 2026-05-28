@@ -11,6 +11,7 @@ function renderCart() {
   if (!items.length) {
     if (emptyEl) emptyEl.style.display = "block";
     totalEl.textContent = `Total: ${window.Cart?.formatBRL?.(0) ?? "R$ 0,00"}`;
+    updateCheckout(0);
     return;
   }
 
@@ -113,12 +114,13 @@ function updateCheckout(productsTotal) {
 
   if (!shippingSelect || !paymentSelect || !productsEl || !shippingEl || !discountEl || !finalEl) return;
 
-  const shipping = Number(shippingSelect.value || 0);
+  const hasItems = (window.Cart?.load?.() ?? []).length > 0;
+  const shipping = hasItems ? Number(shippingSelect.value || 0) : 0;
   const payment = paymentSelect.value;
 
   let discountRate = 0;
-  if (payment === "pix") discountRate = 0.05;
-  if (payment === "boleto") discountRate = 0.02;
+  if (hasItems && payment === "pix") discountRate = 0.05;
+  if (hasItems && payment === "boleto") discountRate = 0.02;
 
   const discount = productsTotal * discountRate;
   const final = productsTotal + shipping - discount;
@@ -157,7 +159,9 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Adicione produtos ao carrinho antes de finalizar a compra.");
       return;
     }
-    alert("Pedido pronto para seguir para pagamento.");
+    window.Cart?.clear?.();
+    renderCart();
+    alert("Compra finalizada com sucesso.");
   });
 
   renderCart();
