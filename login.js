@@ -31,7 +31,7 @@ loginForm.addEventListener("submit", async function (event) {
 
     message.textContent = "Login realizado com sucesso!";
     message.className = "success";
-    window.location.href = "teste.html"
+    window.location.href = "index.html"
 
     console.log("Usuário autenticado:", data);
 
