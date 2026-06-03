@@ -3,249 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="contanto.css">
     <title>Play Zone - Contato</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 40px 30px;
-            text-align: center;
-        }
-
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.9;
-        }
-
-        .content {
-            padding: 40px 30px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 600;
-            font-size: 0.95em;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: inherit;
-            transition: all 0.3s ease;
-        }
-
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        button {
-            width: 100%;
-            padding: 18px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        .info-section {
-            margin-top: 30px;
-            padding-top: 30px;
-            border-top: 2px solid #e0e0e0;
-        }
-
-        .info-section h3 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 1.2em;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        .info-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2em;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-
-        .info-item a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .info-item a:hover {
-            color: #764ba2;
-        }
-
-        .success-message {
-            display: none;
-            background: #4caf50;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-            animation: slideIn 0.3s ease;
-        }
-
-        .error-message {
-            display: none;
-            background: #f44336;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            text-align: center;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .back-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 32px;
-            border-radius: 25px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            margin-top: 30px;
-            width: auto;
-            display: inline-block;
-        }
-
-        .back-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-        }
-
-        @media (max-width: 600px) {
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .content {
-                padding: 25px 20px;
-            }
-
-            .header {
-                padding: 30px 20px;
-            }
-
-            .back-button {
-                padding: 10px 24px;
-                font-size: 14px;
-            }
-        }
-    </style>
+   
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🎮 Play Zone</h1>
+            <h1>&#127918; Play Zone</h1>
             <p>Entre em contato conosco</p>
         </div>
 
         <div class="content">
             <div id="successMessage" class="success-message">
-                ✓ Mensagem enviada com sucesso!
+                &#10003; Mensagem enviada com sucesso!
             </div>
 
             <div id="errorMessage" class="error-message">
-                ✗ Erro ao enviar mensagem. Tente novamente.
+                &#10007; Erro ao enviar mensagem. Tente novamente.
             </div>
 
             <form id="formulario">
@@ -278,10 +53,10 @@
             </form>
 
             <div class="info-section">
-                <h3>Informações de Contato</h3>
-                
+                <h3>Informa&ccedil;&otilde;es de Contato</h3>
+
                 <div class="info-item">
-                    <div class="info-icon">✉️</div>
+                    <div class="info-icon">&#9993;&#65039;</div>
                     <div>
                         <strong>E-mail:</strong><br>
                         <a href="mailto:playzone@gmail.com">playzone@gmail.com</a>
@@ -289,23 +64,24 @@
                 </div>
 
                 <div class="info-item">
-                    <div class="info-icon">📱</div>
+                    <div class="info-icon">&#128241;</div>
                     <div>
                         <strong>WhatsApp:</strong><br>
-                        <a href="https://wa.me/5511999999999" target="_blank">Clique aqui para conversar</a>
+                        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener">Clique aqui para conversar</a>
                     </div>
                 </div>
 
                 <div class="info-item">
-                    <div class="info-icon">⏰</div>
+                    <div class="info-icon">&#9200;</div>
                     <div>
-                        <strong>Horário de Atendimento:</strong><br>
-                        Segunda a Sexta: 9h às 18h
+                        <strong>Hor&aacute;rio de Atendimento:</strong><br>
+                        Segunda a Sexta: 9h &agrave;s 18h
                     </div>
                 </div>
             </div>
+
             <div style="text-align: center; margin-top: 30px;">
-                <button class="back-button" onclick="window.location.href='ativis.html'">Voltar</button>
+                <button class="back-button" type="button" onclick="window.location.href='index.html'">Voltar</button>
             </div>
         </div>
     </div>
@@ -318,20 +94,27 @@
         formulario.addEventListener('submit', function(evento) {
             evento.preventDefault();
 
-            var nome = document.getElementById('nome').value;
-            var email = document.getElementById('email').value;
-            var telefone = document.getElementById('telefone').value;
-            var assunto = document.getElementById('assunto').value;
-            var mensagem = document.getElementById('mensagem').value;
+            var nome = document.getElementById('nome').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var telefone = document.getElementById('telefone').value.trim();
+            var assunto = document.getElementById('assunto').value.trim();
+            var mensagem = document.getElementById('mensagem').value.trim();
 
             if (nome && email && assunto && mensagem) {
                 successMessage.style.display = 'block';
                 errorMessage.style.display = 'none';
 
+                var corpoEmail = 'Nome: ' + nome +
+                    '\nE-mail: ' + email +
+                    '\nTelefone: ' + telefone +
+                    '\n\nMensagem:\n' + mensagem;
+
+                var linkEmail = 'mailto:playzone@gmail.com?subject=' +
+                    encodeURIComponent(assunto) +
+                    '&body=' +
+                    encodeURIComponent(corpoEmail);
+
                 formulario.reset();
-
-                var linkEmail = 'mailto:playzone@gmail.com?subject=' + encodeURIComponent(assunto) + '&body=' + encodeURIComponent('Nome: ' + nome + '\nE-mail: ' + email + '\nTelefone: ' + telefone + '\n\nMensagem:\n' + mensagem);
-
                 window.location.href = linkEmail;
 
                 setTimeout(function() {

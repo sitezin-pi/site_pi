@@ -10,7 +10,7 @@ body{
 
 
 /* From Uiverse.io by JohnnyCSilva */ 
-.form {
+#loginForm {
     display: flex;
     flex-direction: column;
     gap: 10px;

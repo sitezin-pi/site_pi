@@ -19,12 +19,12 @@
     </button>
 
     <div class="brand">
-      <a href="ativis.html" class="logo">Play Zone</a>
+      <a href="index.html" class="logo">Play Zone</a>
       <img class="logo2" src="WhatsApp Image 2026-03-19 at 15.00.08.jpeg" alt="Logo GameStore">
     </div>
 
     <ul class="nav-list" id="nav-list">
-      <li><a href="ativis.html" class="nav-lista"><strong>Inicio</strong></a></li>
+      <li><a href="index.html" class="nav-lista"><strong>Inicio</strong></a></li>
       <li class="nav-dropdown">
         <button class="nav-lista nav-dd-trigger" type="button" aria-expanded="false" aria-controls="cat-menu" aria-haspopup="menu">
           <strong>Categorias</strong>
@@ -43,14 +43,14 @@
 <main class="container">
   <div class="home-stack">
     <section class="card" id="consoles">
-      <h2>Todos os consoles disponiveis</h2>
-      <p class="games-page-subtitle">Pagina dedicada apenas aos consoles da loja.</p>
+      <h2>Todos os consoles disponíveis</h2>
+      <p class="games-page-subtitle">Página dedicada apenas aos consoles da loja.</p>
       <div class="catalog-toolbar">
         <label class="catalog-filter">
-          <span>Faixa de preco</span>
+          <span>Faixa de preço</span>
           <select id="consolePriceFilter">
-            <option value="all">Todos os precos</option>
-            <option value="0-2500">Ate R$ 2.500</option>
+            <option value="all">Todos os preços</option>
+            <option value="0-2500">Até R$ 2.500</option>
             <option value="2500-4500">R$ 2.500 a R$ 4.500</option>
             <option value="4500-99999">Acima de R$ 4.500</option>
           </select>
@@ -63,9 +63,9 @@
       <div class="compare-header">
         <div>
           <h2>Comparador de consoles</h2>
-          <p class="games-page-subtitle compare-subtitle">Selecione ate 2 consoles para ver diferencas lado a lado.</p>
+          <p class="games-page-subtitle compare-subtitle">Selecione até 2 consoles para ver diferenças lado a lado.</p>
         </div>
-        <button class="btn" type="button" id="clearConsoleCompare">Limpar comparacao</button>
+        <button class="btn" type="button" id="clearConsoleCompare">Limpar comparação</button>
       </div>
       <div class="compare-grid" id="consoleCompareGrid">
         <article class="compare-placeholder">Selecione um console para comparar.</article>
@@ -76,7 +76,8 @@
 </main>
 
 <section class="consoles" id="consoles-catalogo">
-  <div>
+  <div class="consoles-inner">
+    <div class="consoles-grid">
     <div class="card" style="width: 18rem;" data-console-card data-performance="Alta" data-storage="SSD 825 GB" data-mode="4K" data-audience="Exclusivos e alto desempenho">
       <img src="https://m.media-amazon.com/images/I/51z1MC364oL._AC_SX679_.jpg" class="card-img-top" alt="PS5">
       <div class="card-body">
@@ -135,6 +136,7 @@
         <label class="compare-toggle"><input type="checkbox" class="console-compare-check"> Comparar</label>
         <a href="#" class="btn btn-primary console-buy">Comprar</a>
       </div>
+    </div>
     </div>
   </div>
 </section>

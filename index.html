@@ -11,7 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 <body>
-
+ <br>
 <header class="header">
   <nav class="nav">
     
@@ -22,19 +22,19 @@
     </button>
 
     <div class="brand">
-      <a href="ativis.html" class="logo">Play Zone</a>
+      <a href="index.html" class="logo">Play Zone</a>
       <img class="logo2" src="WhatsApp Image 2026-03-19 at 15.00.08.jpeg" alt="Logo GameStore">
     </div>
 
     <ul class="nav-list" id="nav-list">
-      <li><a href="ativis.html" class="nav-lista"><strong>Inicio</strong></a></li>
+      <li><a href="index.html" class="nav-lista"><strong>Inicio</strong></a></li>
       <li class="nav-dropdown">
         <button class="nav-lista nav-dd-trigger" type="button" aria-expanded="false" aria-controls="cat-menu" aria-haspopup="menu">
           <strong>Categorias</strong>
         </button>
         <ul class="nav-dd" id="cat-menu" role="menu" aria-label="Categorias">
-          <li role="none"><a role="menuitem" href="#produtos" class="nav-dd-item">Jogos</a></li>
-          <li role="none"><a role="menuitem" href="#consoles" class="nav-dd-item">Consoles</a></li>
+          <li role="none"><a role="menuitem" href="categoriajogos.html" class="nav-dd-item">Jogos</a></li>
+          <li role="none"><a role="menuitem" href="categoriaconsoles.html" class="nav-dd-item">Consoles</a></li>
         </ul>
       </li>
       <li><a href="carrinho.html" class="nav-lista"><strong>Carrinho</strong> <span class="cart-badge" id="cartCount" aria-live="polite"></span></a></li>
@@ -110,9 +110,13 @@
     </section>
 
     <section class="card" id="produtos">
-        <h2>Produtos</h2>
+        <div class="produtos-topo">
+          <button class="jogos-seta" type="button" data-games-prev aria-label="Voltar para jogos anteriores">&lsaquo;</button>
+          <h2>Produtos</h2>
+          <button class="jogos-seta" type="button" data-games-next aria-label="Ver mais jogos">&rsaquo;</button>
+        </div>
         
-        <div class="produtos">
+        <div class="produtos jogos-aba is-active" data-games-page="0">
         
         <div class="produto">
         <img src="https://th.bing.com/th/id/OPHS.RJTm7oN3v298Fw474C474?w=172&h=220&c=17&pid=21.1">
@@ -238,7 +242,7 @@
 
 
                     <div class="produto">
-                      <img src="https://th.bing.com/th/id/OPHS.KfakAoEcLrdItA474C474?w=165&h=208&c=17&pid=21.1" alt="Hogwarts Legacy" loading="lazy">
+                      <img src="https://m.media-amazon.com/images/I/811Mnde97WL._AC_SY741_.jpg" alt="Hogwarts Legacy" loading="lazy">
                       <br> <br>
                       <p>NBA 2K26</p>
                       <p>Preço: R$ 259,90</p>
@@ -279,15 +283,89 @@
             <div class="produto">
               <img src="https://th.bing.com/th/id/OPHS.ELbAVEhWy1vHMA474C474?w=172&h=220&c=17&pid=21.1" alt="Hogwarts Legacy" loading="lazy">
               <br> <br>
-              <p>LEGO Horizon Adventures - PlayStation 5</p>
+              <p>LEGO Horizon Adventures</p>
               <p>Preço: R$ 259,90</p>
               <br>
               <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
           </div>
 
+          
 
+          <div class="produto">
+            <img src="https://m.media-amazon.com/images/I/819yZBNBmbL._AC_SY741_.jpg" alt="Hogwarts Legacy" loading="lazy">
+            <br> <br>
+            <p>Forza Horizon 6 – Xbox Series X</p>
+            <p>Preço: R$ 259,90</p>
+            <br>
+            <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
+        </div>
 
+        
+        <div class="produto">
+          <img src="https://m.media-amazon.com/images/I/71puswrN7DL._AC_SX569_.jpg" alt="Hogwarts Legacy" loading="lazy">
+          <br> <br>
+          <p>Rockstar Games Grand Theft Auto: The Trilogy </p>
+          <p>Preço: R$ 259,90</p>
+          <br>
+          <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
+      </div>
 
+        </div>
+
+        <div class="produtos jogos-aba" data-games-page="1" hidden>
+          <div class="produto">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.G-FK9lPpl25EXrgIyFfNVQHaLH?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Marvel's Spider-Man 2" loading="lazy">
+            <br> <br>
+            <p>Marvel's Spider-Man 2</p>
+            <p>Pre&ccedil;o: R$ 289,90</p>
+            <br>
+            <button onclick="Cart.addItem('Marvel\'s Spider-Man 2',289.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.6PH8_viapjqQUt2A34YzmQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3c" alt="Mortal Kombat 1" loading="lazy">
+            <br> <br>
+            <p>Mortal Kombat 1</p>
+            <p>Pre&ccedil;o: R$ 219,90</p>
+            <br>
+            <button onclick="Cart.addItem('Mortal Kombat 1',219.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.sYCBG5xKQGUcATme74_EeQHaLH?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Assassin's Creed Shadows" loading="lazy">
+            <br> <br>
+            <p>Assassin's Creed Shadows</p>
+            <p>Pre&ccedil;o: R$ 299,90</p>
+            <br>
+            <button onclick="Cart.addItem('Assassin\'s Creed Shadows',299.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.DMst_Hj3TAe-Tahy5SULSAHaEo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Street Fighter 6" loading="lazy">
+            <br> <br>
+            <p>Street Fighter 6</p>
+            <p>Pre&ccedil;o: R$ 199,90</p>
+            <br>
+            <button onclick="Cart.addItem('Street Fighter 6',199.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.UWIrXUre9dtO-C4sRf46mAHaJ4?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Final Fantasy XVI" loading="lazy">
+            <br> <br>
+            <p>Final Fantasy XVI</p>
+            <p>Pre&ccedil;o: R$ 249,90</p>
+            <br>
+            <button onclick="Cart.addItem('Final Fantasy XVI',249.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.-4CGzT8iQxk2Oo5ZJQxS4wHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Star Wars Jedi Survivor" loading="lazy">
+            <br> <br>
+            <p>Star Wars Jedi: Survivor</p>
+            <p>Pre&ccedil;o: R$ 229,90</p>
+            <br>
+            <button onclick="Cart.addItem('Star Wars Jedi: Survivor',229.9)">Adicionar</button>
+          </div>
         </div>
         </section>
   </div>
@@ -344,6 +422,23 @@
       <p class="card-text">R$ 1.700,00</p>
       <a href="#" class="btn btn-primary console-buy">Comprar</a>
     </div>
+
+    <div class="card">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.hRAMWGqIYt8NfbNsckcd0AHaD4?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">PS4</h5>
+        <p class="card-text">R$ 1.700,00</p>
+        <a href="#" class="btn btn-primary console-buy">Comprar</a>
+      </div>
+
+      <div class="card">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.hRAMWGqIYt8NfbNsckcd0AHaD4?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">PS4</h5>
+          <p class="card-text">R$ 1.700,00</p>
+          <a href="#" class="btn btn-primary console-buy">Comprar</a>
+        </div>
+        
   </div>
   </div>
   </div>
