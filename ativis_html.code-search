@@ -1,0 +1,13 @@
+# Query: ativis.html
+# ContextLines: 1
+
+2 resultados - Um arquivo
+
+categoriajogos.html:
+  22      <div class="brand">
+  23:       <a href="index.html" class="logo">Play Zone</a>
+  24        <img class="logo2" src="WhatsApp Image 2026-03-19 at 15.00.08.jpeg" alt="Logo GameStore">
+
+  27      <ul class="nav-list" id="nav-list">
+  28:       <li><a href="index.html" class="nav-lista"><strong>Inicio</strong></a></li>
+  29        <li class="nav-dropdown">
