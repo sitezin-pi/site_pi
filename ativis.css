@@ -93,7 +93,13 @@ a {
   appearance: none;
   border: 0;
   background: transparent;
+  color: inherit;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .nav-dd {
@@ -138,7 +144,8 @@ a {
   transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
 }
 
-.nav-lista:hover {
+.nav-lista:hover,
+.nav-dropdown.is-open > .nav-dd-trigger {
   color: var(--text);
   background: rgba(255, 255, 255, 0.06);
 }
@@ -151,12 +158,13 @@ a {
   bottom: 6px;
   height: 2px;
   background: linear-gradient(90deg, transparent, var(--neon), var(--neon2), transparent);
-  opacity: 0;
-  transform: translateY(2px);
+  opacity: 0.72;
+  transform: translateY(0);
   transition: opacity 160ms ease, transform 160ms ease;
 }
 
-.nav-lista:hover::after {
+.nav-lista:hover::after,
+.nav-dropdown.is-open > .nav-dd-trigger::after {
   opacity: 1;
   transform: translateY(0);
 }
