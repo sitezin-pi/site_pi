@@ -162,6 +162,37 @@ function setupPromoCarousel() {
 
 setupPromoCarousel();
 
+function setupGamesTabs() {
+  const pages = Array.from(document.querySelectorAll("[data-games-page]"));
+  const btnPrev = document.querySelector("[data-games-prev]");
+  const btnNext = document.querySelector("[data-games-next]");
+  if (pages.length === 0) return;
+
+  let index = 0;
+
+  function render() {
+    for (let i = 0; i < pages.length; i++) {
+      const isActive = i === index;
+      pages[i].hidden = !isActive;
+      pages[i].classList.toggle("is-active", isActive);
+      pages[i].setAttribute("aria-hidden", String(!isActive));
+    }
+  }
+
+  function goTo(nextIndex) {
+    const len = pages.length;
+    index = ((nextIndex % len) + len) % len;
+    render();
+  }
+
+  btnPrev?.addEventListener("click", () => goTo(index - 1));
+  btnNext?.addEventListener("click", () => goTo(index + 1));
+
+  render();
+}
+
+setupGamesTabs();
+
 function setupCartBadge() {
   const badge = document.getElementById("cartCount");
   if (!badge || !window.Cart) return;

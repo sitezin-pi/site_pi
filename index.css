@@ -855,6 +855,42 @@ height: 150px;
 }
 
 /* Visual upgrade: product cards + price styling */
+.produtos-topo {
+  display: grid;
+  grid-template-columns: 46px 1fr 46px;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.produtos-topo h2 {
+  margin: 0;
+}
+
+.jogos-seta {
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(55, 165, 255, 0.42);
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 255, 117, 0.20), rgba(55, 165, 255, 0.22));
+  color: #efffff;
+  font-size: 2rem;
+  font-weight: 900;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.jogos-seta:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 255, 117, 0.55);
+  box-shadow: 0 10px 22px rgba(55, 165, 255, 0.24);
+}
+
+.jogos-aba[hidden] {
+  display: none;
+}
+
 .produtos {
   grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   gap: 20px;
