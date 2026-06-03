@@ -2,15 +2,14 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>GameStore</title>
+<title>GameStore | Jogos</title>
 <link rel="stylesheet" href="ativis.css">
 <script defer src="cart.js"></script>
-<script defer src="ativis.js" ></script>
+<script defer src="ativis.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
 <body>
-
 <header class="header">
   <nav class="nav">
     
@@ -21,19 +20,19 @@
     </button>
 
     <div class="brand">
-      <a href="ativis.html" class="logo">Play Zone</a>
+      <a href="index.html" class="logo">Play Zone</a>
       <img class="logo2" src="WhatsApp Image 2026-03-19 at 15.00.08.jpeg" alt="Logo GameStore">
     </div>
 
     <ul class="nav-list" id="nav-list">
-      <li><a href="ativis.html" class="nav-lista"><strong>Inicio</strong></a></li>
+      <li><a href="index.html" class="nav-lista"><strong>Inicio</strong></a></li>
       <li class="nav-dropdown">
         <button class="nav-lista nav-dd-trigger" type="button" aria-expanded="false" aria-controls="cat-menu" aria-haspopup="menu">
           <strong>Categorias</strong>
         </button>
         <ul class="nav-dd" id="cat-menu" role="menu" aria-label="Categorias">
-          <li role="none"><a role="menuitem" href="#produtos" class="nav-dd-item">Jogos</a></li>
-          <li role="none"><a role="menuitem" href="#consoles" class="nav-dd-item">Consoles</a></li>
+          <li role="none"><a role="menuitem" href="categoriajogos.html" class="nav-dd-item">Jogos</a></li>
+          <li role="none"><a role="menuitem" href="categoriaconsoles.html" class="nav-dd-item">Consoles</a></li>
         </ul>
       </li>
       <li><a href="carrinho.html" class="nav-lista"><strong>Carrinho</strong> <span class="cart-badge" id="cartCount" aria-live="polite"></span></a></li>
@@ -42,79 +41,27 @@
 
   </nav>
 </header>
-
-
 <main class="container">
   <div class="home-stack">
-    <section class="promo" aria-label="Promoções" data-promo-carousel>
-      <div class="promo-head">
-        <h2 class="promo-title">Promo&ccedil;&otilde;es</h2>
-        <div class="promo-controls">
-          <button class="promo-nav" type="button" data-action="prev" aria-label="Promoção anterior">‹</button>
-          <button class="promo-nav" type="button" data-action="next" aria-label="Próxima promoção">›</button>
-        </div>
-      </div>
-
-      <div class="promo-viewport">
-        <div class="promo-track">
-          <article class="promo-slide" aria-roledescription="slide">
-            <div class="promo-copy">
-              <div class="promo-badge">-40%</div>
-              <h3 class="promo-h">Semana Rockstar</h3>
-              <p class="promo-p">GTA V com desconto por tempo limitado.</p>
-              <p class="promo-price"><span class="promo-from">De R$ 150,00</span> <span class="promo-to">por R$ 90,00</span></p>
-              <div class="promo-ctas">
-                <button class="promo-cta" type="button" onclick="Cart.addItem('GTA V', 90)">Adicionar com desconto</button>
-                <a class="promo-cta promo-cta-secondary" href="#produtos">Ver no cat&aacute;logo</a>
-              </div>
-            </div>
-            <img class="promo-img" src="https://th.bing.com/th/id/OPHS.RJTm7oN3v298Fw474C474?w=172&h=220&c=17&pid=21.1" alt="GTA V" loading="lazy" />
-          </article>
-
-          <article class="promo-slide" aria-roledescription="slide">
-            <div class="promo-copy">
-              <div class="promo-badge">-25%</div>
-              <h3 class="promo-h">Modo Competitivo</h3>
-              <p class="promo-p">FIFA 26 na semana de lançamento.</p>
-              <p class="promo-price"><span class="promo-from">De R$ 300,00</span> <span class="promo-to">por R$ 225,00</span></p>
-              <div class="promo-ctas">
-                <button class="promo-cta" type="button" onclick="Cart.addItem('FIFA 26', 225)">Adicionar com desconto</button>
-                <a class="promo-cta promo-cta-secondary" href="#produtos">Ver no cat&aacute;logo</a>
-              </div>
-            </div>
-            <img class="promo-img" src="https://th.bing.com/th/id/OPHS.1DvQjWfv28puPw474C474?w=170&h=220&c=17&pid=21.1" alt="FIFA 26" loading="lazy" />
-          </article>
-
-          <article class="promo-slide" aria-roledescription="slide">
-            <div class="promo-copy">
-              <div class="promo-badge">-50%</div>
-              <h3 class="promo-h">Velho Oeste</h3>
-              <p class="promo-p">Red Dead Redemption 2 com metade do pre&ccedil;o.</p>
-              <p class="promo-price"><span class="promo-from">De R$ 297,00</span> <span class="promo-to">por R$ 148,50</span></p>
-              <div class="promo-ctas">
-                <button class="promo-cta" type="button" onclick="Cart.addItem('Red Dead Redemption 2', 148.5)">Adicionar com desconto</button>
-                <a class="promo-cta promo-cta-secondary" href="#produtos">Ver no cat&aacute;logo</a>
-              </div>
-            </div>
-            <img class="promo-img" src="https://www.bing.com/th?id=OPHS.H4OpGzPu4g7gfQ474C474" alt="Red Dead Redemption 2" loading="lazy" />
-          </article>
-        </div>
-      </div>
-
-      <div class="promo-dots" role="tablist" aria-label="Selecionar promoção">
-        <button class="promo-dot" type="button" data-index="0" aria-label="Promoção 1" aria-current="true"></button>
-        <button class="promo-dot" type="button" data-index="1" aria-label="Promoção 2"></button>
-        <button class="promo-dot" type="button" data-index="2" aria-label="Promoção 3"></button>
-      </div>
-    </section>
-
     <section class="card" id="produtos">
-        <h2>Produtos</h2>
+        <h2>Todos os jogos disponíveis</h2>
+        <p class="games-page-subtitle">Página dedicada apenas ao catálogo de jogos da loja.</p>
+        <div class="catalog-toolbar">
+          <label class="catalog-filter">
+            <span>Faixa de preço</span>
+            <select id="gamePriceFilter">
+              <option value="all">Todos os preços</option>
+              <option value="200-260">R$ 200 a R$ 260</option>
+              <option value="260-9999">Acima de R$ 260</option>
+            </select>
+          </label>
+          <p class="catalog-result" id="gameFilterResult">Mostrando todos os jogos</p>
+        </div>
         
         <div class="produtos">
         
         <div class="produto">
-        <img src="https://th.bing.com/th/id/OPHS.RJTm7oN3v298Fw474C474?w=172&h=220&c=17&pid=21.1">
+        <img src="https://th.bing.com/th/id/OPHS.RJTm7oN3v298Fw474C474?w=172&h=220&c=17&pid=21.1" alt="GTA V" loading="lazy">
         <br> <br>
         <p>GTA V</p>
         <p>Preço: R$ 150,00</p>
@@ -123,7 +70,7 @@
         </div>
         
         <div class="produto">
-        <img src="https://th.bing.com/th/id/OPHS.1DvQjWfv28puPw474C474?w=170&h=220&c=17&pid=21.1">
+        <img src="https://th.bing.com/th/id/OPHS.1DvQjWfv28puPw474C474?w=170&h=220&c=17&pid=21.1" alt="FIFA 26" loading="lazy">
         <br> <br>
         <p>FIFA 26</p>
         <p>Preço: R$ 300,00</p>
@@ -132,7 +79,7 @@
         </div>
         
         <div class="produto">
-        <img src="https://www.bing.com/th?id=OPHS.lLi7DupbcouinA474C474">
+        <img src="https://www.bing.com/th?id=OPHS.lLi7DupbcouinA474C474" alt="WWE 25" loading="lazy">
         <br> <br>
         <p>WWE 25</p>
         <p>Preço: R$ 237,40</p>
@@ -141,7 +88,7 @@
         </div>
         
         <div class="produto">
-        <img src="https://www.bing.com/th?id=OPHS.H4OpGzPu4g7gfQ474C474">
+        <img src="https://www.bing.com/th?id=OPHS.H4OpGzPu4g7gfQ474C474" alt="Red Dead Redemption 2" loading="lazy">
         <br> <br>
         <p>Red Dead Redemption 2</p>
         <p>Preço: R$ 297,00</p>
@@ -163,8 +110,7 @@
             <div class="produto">
                 <img src="data:image/jpeg;base64,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">
                 <br> <br>
-                <p> Ghost of Yõtei-
-                     PS5</p>
+                <p>Ghost of Yotei - PS5</p>
                 <p>Preço: R$ 371,00</p>
                 <br> 
                 <button onclick="Cart.addItem('Ghost of Yotei - PS5',371)">Adicionar</button>
@@ -184,7 +130,7 @@
                     <div class="produto">
                         <img src="https://th.bing.com/th/id/OPHS.FWSzVC7ac26D6Q474C474?w=248&h=248&o=5&pid=21.1" alt="Elden Ring" loading="lazy">
                         <br> <br>
-                        <p>Elden Ring</p>
+                        <p>Resident Evil</p>
                         <p>Preço: R$ 249,90</p>
                         <br>
                         <button onclick="Cart.addItem('Elden Ring',249.9)">Adicionar</button>
@@ -193,7 +139,7 @@
                     <div class="produto">
                         <img src="https://th.bing.com/th/id/OPHS.QNupgrt8GrXCGA474C474?w=181&h=220&c=17&pid=21.1" alt="Cyberpunk 2077" loading="lazy">
                         <br> <br>
-                        <p>Cyberpunk 2077</p>
+                        <p>Battlefield 6</p>
                         <p>Preço: R$ 199,90</p>
                         <br>
                         <button onclick="Cart.addItem('Cyberpunk 2077',199.9)">Adicionar</button>
@@ -202,7 +148,7 @@
                     <div class="produto">
                         <img src="https://th.bing.com/th/id/OPHS.94vdGfs1CRT8Bw474C474?w=172&h=220&c=17&pid=21.1" alt="Forza Horizon 5" loading="lazy">
                         <br> <br>
-                        <p>Forza Horizon 5</p>
+                        <p>Miasma</p>
                         <p>Preço: R$ 229,90</p>
                         <br>
                         <button onclick="Cart.addItem('Forza Horizon 5',229.9)">Adicionar</button>
@@ -211,7 +157,7 @@
                     <div class="produto">
                         <img src="https://th.bing.com/th/id/OPHS.qIrYIp75w0DZzQ474C474?w=181&h=220&c=17&pid=21.1" alt="The Last of Us Part I" loading="lazy">
                         <br> <br>
-                        <p>The Last of Us Part I</p>
+                        <p>Madden 25</p>
                         <p>Preço: R$ 299,90</p>
                         <br>
                         <button onclick="Cart.addItem('The Last of Us Part I',299.9)">Adicionar</button>
@@ -220,7 +166,7 @@
                     <div class="produto">
                         <img src="https://th.bing.com/th/id/OPHS.TacuCE4y0vRiBw474C474?w=248&h=248&c=17&o=5&pid=21.1" alt="God of War Ragnarok" loading="lazy">
                         <br> <br>
-                        <p>God of War RagnarÃ¶k</p>
+                        <p>Jump Force</p>
                         <p>Preço: R$ 279,90</p>
                         <br>
                         <button onclick="Cart.addItem('God of War Ragnarok',279.9)">Adicionar</button>
@@ -229,133 +175,28 @@
                     <div class="produto">
                         <img src="https://th.bing.com/th/id/OPHS.Qwj7oxAjKCLbDA474C474?w=174&h=220&c=17&pid=21.1" alt="Hogwarts Legacy" loading="lazy">
                         <br> <br>
-                        <p>Hogwarts Legacy</p>
+                        <p>Halo Infinite</p>
                         <p>Preço: R$ 259,90</p>
                         <br>
                         <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
                     </div>
 
 
-                    <div class="produto">
-                      <img src="https://th.bing.com/th/id/OPHS.KfakAoEcLrdItA474C474?w=165&h=208&c=17&pid=21.1" alt="Hogwarts Legacy" loading="lazy">
-                      <br> <br>
-                      <p>Hogwarts Legacy</p>
-                      <p>Preço: R$ 259,90</p>
-                      <br>
-                      <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
-                  </div>
-
-                    
-                  <div class="produto">
-                    <img src="https://m.media-amazon.com/images/I/81h2WhI4dtL._AC_SX679_.jpg" alt="Hogwarts Legacy" loading="lazy">
-                    <br> <br>
-                    <p>Hogwarts Legacy</p>
-                    <p>Preço: R$ 259,90</p>
-                    <br>
-                    <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
-                </div>
-
-
-                <div class="produto">
-                  <img src="https://th.bing.com/th/id/OPHS.DYVqiKjwjYZAyg474C474?w=171&h=220&c=17&pid=21.1" alt="Hogwarts Legacy" loading="lazy">
-                  <br> <br>
-                  <p>Hogwarts Legacy</p>
-                  <p>Preço: R$ 259,90</p>
-                  <br>
-                  <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
-              </div>
-
-              <div class="produto">
-                <img src="https://th.bing.com/th?id=OPHS.EVWii%2fNp02npCA474C474&w=170&h=220&c=17&pid=21.1" alt="Hogwarts Legacy" loading="lazy">
-                <br> <br>
-                <p> </p>
-                <p>Preço: R$ 259,90</p>
-                <br>
-                <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
-            </div>
-
-
             <div class="produto">
-              <img src="https://th.bing.com/th/id/OPHS.ELbAVEhWy1vHMA474C474?w=172&h=220&c=17&pid=21.1" alt="Hogwarts Legacy" loading="lazy">
+              <img src="https://th.bing.com/th/id/OPHS.ELbAVEhWy1vHMA474C474?w=172&h=220&c=17&pid=21.1" alt="LEGO Horizon Adventures - PlayStation 5" loading="lazy">
               <br> <br>
               <p>LEGO Horizon Adventures - PlayStation 5</p>
               <p>Preço: R$ 259,90</p>
               <br>
-              <button onclick="Cart.addItem('Hogwarts Legacy',259.9)">Adicionar</button>
+              <button onclick="Cart.addItem('LEGO Horizon Adventures - PlayStation 5',259.9)">Adicionar</button>
           </div>
 
 
 
 
         </div>
-        </section>
   </div>
-    </main>
-    
-
-
-<section class="consoles" id="consoles">
-  <div class="consoles-inner">
-  <h2 class="consoles-title">Consoles</h2>
-
-  <div class="consoles-grid">
-  <div class="card">
-    <img src="https://m.media-amazon.com/images/I/51z1MC364oL._AC_SX679_.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">PS5</h5>
-      <p class="card-text">R$ 4.900,00</p>
-      <a href="#" class="btn btn-primary console-buy">Comprar</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://m.magazineluiza.com.br/a-static/420x420/console-nintendo-switch-v2-32gb-edicao-mario-bros-wonder-3-meses-assinatura-nintendo-online/esh0p/2067/c48ec43bd60d2ffeeb8990135bcdb0f6.jpeg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Nintendo Switch</h5>
-      <p class="card-text">R$ 2.100,00</p>
-      <a href="#" class="btn btn-primary console-buy">Comprar</a>
-    </div>
-  </div>
-
-
-  <div class="card">
-    <img src="https://tse1.mm.bing.net/th/id/OIP.qU8rus6t1LAG_-EkGO4fngHaHa?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">XBOX Series S</h5>
-      <p class="card-text">R$ 3.150,00</p>
-      <a href="#" class="btn btn-primary console-buy">Comprar</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://m.media-amazon.com/images/I/512ulOXnvYL._AC_SX679_.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">XBOX Series X</h5>
-      <p class="card-text">R$ 5.099,00</p>
-      <a href="#" class="btn btn-primary console-buy">Comprar</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://tse2.mm.bing.net/th/id/OIP.hRAMWGqIYt8NfbNsckcd0AHaD4?rs=1&pid=ImgDetMain&o=7&rm=3" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">PS4</h5>
-      <p class="card-text">R$ 1.700,00</p>
-      <a href="#" class="btn btn-primary console-buy">Comprar</a>
-    </div>
-  </div>
-  </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-
+</main>
     <footer class="footer">
 
 

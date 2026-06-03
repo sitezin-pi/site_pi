@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play Zone - Cadastro</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <main class="container">
+        <section class="header">
+            <h1>&#127918; Cadastro</h1>
+            <p>Crie sua conta na Play Zone</p>
+        </section>
+
+        <section class="content">
+            <div id="successMessage" class="message success">
+                &#10003; Cadastro realizado com sucesso!
+            </div>
+
+            <div id="errorMessage" class="message error">
+                &#10007; Preencha todos os campos corretamente.
+            </div>
+
+            <form id="cadastroForm">
+                <div class="form-group">
+                    <label for="nome">Nome completo</label>
+                    <input type="text" id="nome" name="nome" autocomplete="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" autocomplete="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" autocomplete="tel">
+                </div>
+
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" name="senha" minlength="6" autocomplete="new-password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmarSenha">Confirmar senha</label>
+                    <input type="password" id="confirmarSenha" name="confirmarSenha" minlength="6" autocomplete="new-password" required>
+                </div>
+
+                <label class="terms" for="termos">
+                    <input type="checkbox" id="termos" name="termos" required>
+                    <span>Li e aceito os termos de uso da Play Zone.</span>
+                </label>
+
+                <button class="button-submit" type="submit">Cadastrar</button>
+            </form>
+
+            <p class="login-text">
+                J&aacute; tem uma conta? <a href="loguin.html">Entrar</a>
+            </p>
+
+            <div class="divider"></div>
+
+            <div class="back-area">
+                <button class="back-button" type="button" onclick="window.location.href='index.html'">Voltar para a loja</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        var cadastroForm = document.getElementById('cadastroForm');
+        var successMessage = document.getElementById('successMessage');
+        var errorMessage = document.getElementById('errorMessage');
+
+        function mostrarMensagem(tipo, texto) {
+            var mensagemAtual = tipo === 'success' ? successMessage : errorMessage;
+            var outraMensagem = tipo === 'success' ? errorMessage : successMessage;
+
+            mensagemAtual.textContent = texto;
+            mensagemAtual.style.display = 'block';
+            outraMensagem.style.display = 'none';
+
+            setTimeout(function() {
+                mensagemAtual.style.display = 'none';
+            }, 5000);
+        }
+
+        cadastroForm.addEventListener('submit', function(evento) {
+            evento.preventDefault();
+
+            var nome = document.getElementById('nome').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var telefone = document.getElementById('telefone').value.trim();
+            var senha = document.getElementById('senha').value;
+            var confirmarSenha = document.getElementById('confirmarSenha').value;
+            var termos = document.getElementById('termos').checked;
+
+            if (!nome || !email || !senha || !confirmarSenha || !termos) {
+                mostrarMensagem('error', 'Preencha todos os campos obrigat\u00f3rios.');
+                return;
+            }
+
+            if (senha.length < 6) {
+                mostrarMensagem('error', 'A senha precisa ter pelo menos 6 caracteres.');
+                return;
+            }
+
+            if (senha !== confirmarSenha) {
+                mostrarMensagem('error', 'As senhas n\u00e3o conferem.');
+                return;
+            }
+
+            var usuario = {
+                nome: nome,
+                email: email,
+                telefone: telefone
+            };
+
+            localStorage.setItem('playZoneUsuario', JSON.stringify(usuario));
+            cadastroForm.reset();
+            mostrarMensagem('success', 'Cadastro realizado com sucesso!');
+        });
+    </script>
+</body>
+</html>
