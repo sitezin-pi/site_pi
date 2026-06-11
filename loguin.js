@@ -4,7 +4,7 @@ const message = document.getElementById("message");
 loginForm.addEventListener("submit", async function (event) {
   event.preventDefault();
 
-  const email = document.getElementById("email").value;
+  const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
 
   const payload = {
@@ -24,24 +24,23 @@ loginForm.addEventListener("submit", async function (event) {
     const data = await response.json();
 
     if (!response.ok) {
-      message.textContent = data.message || "E-mail ou senha inválidos.";
+      message.textContent = data.message || "E-mail ou senha invalidos.";
       message.className = "error";
       return;
-    } 
+    }
 
-    message.textContent = "Login realizado com sucesso!";
-    message.className = "success";
-    window.location.href = "index.html"
-
-    console.log("Usuário autenticado:", data);
-
-    // Exemplo: salvar token, caso sua API retorne um token
     if (data.token) {
       localStorage.setItem("token", data.token);
     }
 
-    // Exemplo: redirecionar após login
-    // window.location.href = "dashboard.html";
+    message.textContent = "Login realizado com sucesso!";
+    message.className = "success";
+
+    console.log("Usuario autenticado:", data);
+
+    setTimeout(function () {
+      window.location.href = "index.html";
+    }, 1000);
 
   } catch (error) {
     console.error("Erro ao fazer login:", error);
@@ -50,6 +49,3 @@ loginForm.addEventListener("submit", async function (event) {
     message.className = "error";
   }
 });
-
-
-
