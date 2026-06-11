@@ -1,12 +1,14 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <meta charset="UTF-8">
 <title>GameStore</title>
-<link rel="stylesheet" href="ativis.css">
+<link rel="icon" type="image/jpeg" href="logo2.jpeg">
+<link rel="stylesheet" href="index.css">
 <script defer src="cart.js"></script>
-<script defer src="ativis.js" ></script>
+<script defer src="index.js" ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </head>
@@ -110,9 +112,13 @@
     </section>
 
     <section class="card" id="produtos">
-        <h2>Produtos</h2>
+        <div class="produtos-topo">
+          <button class="jogos-seta" type="button" data-games-prev aria-label="Voltar para jogos anteriores">&lsaquo;</button>
+          <h2>Produtos</h2>
+          <button class="jogos-seta" type="button" data-games-next aria-label="Ver mais jogos">&rsaquo;</button>
+        </div>
         
-        <div class="produtos">
+        <div class="produtos jogos-aba is-active" data-games-page="0">
         
         <div class="produto">
         <img src="https://th.bing.com/th/id/OPHS.RJTm7oN3v298Fw474C474?w=172&h=220&c=17&pid=21.1">
@@ -307,7 +313,62 @@
           <button onclick="Cart.addItem('Rockstar Games Grand Theft Auto: The Trilogy',237.41)">Adicionar</button>
       </div>
 
+        </div>
 
+        <div class="produtos jogos-aba" data-games-page="1" hidden>
+          <div class="produto">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.G-FK9lPpl25EXrgIyFfNVQHaLH?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Marvel's Spider-Man 2" loading="lazy">
+            <br> <br>
+            <p>Marvel's Spider-Man 2</p>
+            <p>Pre&ccedil;o: R$ 289,90</p>
+            <br>
+            <button onclick="Cart.addItem('Marvel\'s Spider-Man 2',289.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.6PH8_viapjqQUt2A34YzmQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3c" alt="Mortal Kombat 1" loading="lazy">
+            <br> <br>
+            <p>Mortal Kombat 1</p>
+            <p>Pre&ccedil;o: R$ 219,90</p>
+            <br>
+            <button onclick="Cart.addItem('Mortal Kombat 1',219.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.sYCBG5xKQGUcATme74_EeQHaLH?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Assassin's Creed Shadows" loading="lazy">
+            <br> <br>
+            <p>Assassin's Creed Shadows</p>
+            <p>Pre&ccedil;o: R$ 299,90</p>
+            <br>
+            <button onclick="Cart.addItem('Assassin\'s Creed Shadows',299.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.DMst_Hj3TAe-Tahy5SULSAHaEo?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Street Fighter 6" loading="lazy">
+            <br> <br>
+            <p>Street Fighter 6</p>
+            <p>Pre&ccedil;o: R$ 199,90</p>
+            <br>
+            <button onclick="Cart.addItem('Street Fighter 6',199.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.UWIrXUre9dtO-C4sRf46mAHaJ4?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Final Fantasy XVI" loading="lazy">
+            <br> <br>
+            <p>Final Fantasy XVI</p>
+            <p>Pre&ccedil;o: R$ 249,90</p>
+            <br>
+            <button onclick="Cart.addItem('Final Fantasy XVI',249.9)">Adicionar</button>
+          </div>
+
+          <div class="produto">
+            <img src="https://tse4.mm.bing.net/th/id/OIP.-4CGzT8iQxk2Oo5ZJQxS4wHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Star Wars Jedi Survivor" loading="lazy">
+            <br> <br>
+            <p>Star Wars Jedi: Survivor</p>
+            <p>Pre&ccedil;o: R$ 229,90</p>
+            <br>
+            <button onclick="Cart.addItem('Star Wars Jedi: Survivor',229.9)">Adicionar</button>
+          </div>
         </div>
         </section>
   </div>
@@ -364,6 +425,9 @@
       <p class="card-text">R$ 1.700,00</p>
       <a href="#" class="btn btn-primary console-buy">Comprar</a>
     </div>
+
+  
+        
   </div>
   </div>
   </div>
