@@ -131,6 +131,10 @@ function updateCheckout(productsTotal) {
   finalEl.textContent = window.Cart.formatBRL(final);
 }
 
+function isLoggedIn() {
+  return Boolean(localStorage.getItem("token"));
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const btnClear = document.getElementById("btnLimpar");
   const shippingSelect = document.getElementById("shippingOption");
@@ -159,6 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Adicione produtos ao carrinho antes de finalizar a compra.");
       return;
     }
+
+    if (!isLoggedIn()) {
+      localStorage.setItem("checkout_redirect", "carrinho.html");
+      window.location.href = "loguin.html?next=carrinho.html";
+      return;
+    }
+
     window.Cart?.clear?.();
     renderCart();
     alert("Compra finalizada com sucesso.");
