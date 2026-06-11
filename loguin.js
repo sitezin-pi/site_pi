@@ -1,6 +1,18 @@
 const loginForm = document.getElementById("loginForm");
 const message = document.getElementById("message");
 
+function getLoginRedirect() {
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get("next") || localStorage.getItem("checkout_redirect");
+
+  if (next === "carrinho.html") {
+    localStorage.removeItem("checkout_redirect");
+    return "carrinho.html";
+  }
+
+  return "index.html";
+}
+
 loginForm.addEventListener("submit", async function (event) {
   event.preventDefault();
 
@@ -31,7 +43,6 @@ loginForm.addEventListener("submit", async function (event) {
 
     message.textContent = "Login realizado com sucesso!";
     message.className = "success";
-    window.location.href = "index.html"
 
     console.log("Usuário autenticado:", data);
 
@@ -39,6 +50,7 @@ loginForm.addEventListener("submit", async function (event) {
     if (data.token) {
       localStorage.setItem("token", data.token);
     }
+    window.location.href = getLoginRedirect();
 
     // Exemplo: redirecionar após login
     // window.location.href = "dashboard.html";
