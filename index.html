@@ -43,6 +43,11 @@
       <li><a href="contato.html" class="nav-lista"><strong>Contato</strong></a></li>
     </ul>
 
+    <form class="site-search" role="search" aria-label="Pesquisar jogos">
+      <input id="homeGameSearchInput" class="site-search-input" type="search" placeholder="Pesquisar jogos" aria-label="Pesquisar jogos">
+      <button class="site-search-button" type="submit">Pesquisar</button>
+    </form>
+
   </nav>
 </header>
 
@@ -117,6 +122,7 @@
           <h2>Produtos</h2>
           <button class="jogos-seta" type="button" data-games-next aria-label="Ver mais jogos">&rsaquo;</button>
         </div>
+        <p class="home-search-result" id="homeGameSearchResult" aria-live="polite">Mostrando todos os jogos</p>
         
         <div class="produtos jogos-aba is-active" data-games-page="0">
         
@@ -432,13 +438,6 @@
   </div>
   </div>
 </section>
-
-
-
-
-
-
-
 
 
     <footer class="footer">

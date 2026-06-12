@@ -193,6 +193,90 @@ function setupGamesTabs() {
 
 setupGamesTabs();
 
+function setupHomeGameSearch() {
+  const search = document.getElementById("homeGameSearchInput");
+  const result = document.getElementById("homeGameSearchResult");
+  const form = search?.closest("form");
+  const pages = Array.from(document.querySelectorAll("#produtos [data-games-page]"));
+  const arrows = Array.from(document.querySelectorAll("[data-games-prev], [data-games-next]"));
+  if (!search || pages.length === 0) return;
+
+  let lastActiveIndex = Math.max(
+    0,
+    pages.findIndex((page) => page.classList.contains("is-active"))
+  );
+  let wasSearching = false;
+
+  function restoreTabs() {
+    for (let i = 0; i < pages.length; i++) {
+      const isActive = i === lastActiveIndex;
+      pages[i].hidden = !isActive;
+      pages[i].classList.toggle("is-active", isActive);
+      pages[i].setAttribute("aria-hidden", String(!isActive));
+    }
+  }
+
+  function apply() {
+    const term = normalizeSearchText(search.value);
+    const isSearching = Boolean(term);
+    let visible = 0;
+
+    if (isSearching && !wasSearching) {
+      lastActiveIndex = Math.max(
+        0,
+        pages.findIndex((page) => page.classList.contains("is-active") && !page.hidden)
+      );
+    }
+
+    for (const arrow of arrows) {
+      arrow.hidden = isSearching;
+    }
+
+    if (!isSearching) {
+      for (const card of document.querySelectorAll("#produtos .produto")) {
+        card.hidden = false;
+        visible++;
+      }
+      restoreTabs();
+      if (result) result.textContent = `Mostrando todos (${visible} jogos)`;
+      wasSearching = false;
+      return;
+    }
+
+    for (const page of pages) {
+      let pageVisible = 0;
+      for (const card of page.querySelectorAll(".produto")) {
+        const matches = normalizeSearchText(getGameCardSearchText(card)).includes(term);
+        card.hidden = !matches;
+        if (matches) {
+          pageVisible++;
+          visible++;
+        }
+      }
+
+      page.hidden = pageVisible === 0;
+      page.classList.toggle("is-active", pageVisible > 0);
+      page.setAttribute("aria-hidden", String(pageVisible === 0));
+    }
+
+    if (result) {
+      const label = visible === 1 ? "jogo encontrado" : "jogos encontrados";
+      result.textContent = `Mostrando ${visible} ${label}`;
+    }
+    wasSearching = true;
+  }
+
+  search.addEventListener("input", apply);
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    apply();
+    document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+  apply();
+}
+
+setupHomeGameSearch();
+
 function setupCartBadge() {
   const badge = document.getElementById("cartCount");
   if (!badge || !window.Cart) return;
@@ -250,24 +334,46 @@ function parseRangeValue(value) {
   return { min, max };
 }
 
-function setupCatalogPriceFilter({ selectId, resultId, cardSelector, getPrice, onAfterFilter }) {
+function normalizeSearchText(text) {
+  return String(text || "")
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .trim();
+}
+
+function getGameCardSearchText(card) {
+  const paragraphs = Array.from(card.querySelectorAll("p"));
+  const title = paragraphs.find((p) => !String(p.textContent || "").includes("R$"))?.textContent || "";
+  const alt = card.querySelector("img")?.getAttribute("alt") || "";
+  return `${title} ${alt}`;
+}
+
+function setupCatalogPriceFilter({ selectId, searchId, resultId, cardSelector, getPrice, getSearchText, onAfterFilter }) {
   const select = document.getElementById(selectId);
+  const search = searchId ? document.getElementById(searchId) : null;
   const result = document.getElementById(resultId);
-  if (!select) return;
+  if (!select && !search) return;
 
   function apply() {
-    const range = parseRangeValue(select.value);
+    const range = parseRangeValue(select?.value);
+    const term = normalizeSearchText(search?.value);
     const cards = Array.from(document.querySelectorAll(cardSelector));
     let visible = 0;
 
     for (const card of cards) {
       const price = getPrice(card);
+      const searchText = normalizeSearchText(
+        getSearchText ? getSearchText(card) : card.textContent
+      );
       const inRange =
         !range ||
         (Number.isFinite(price) && price >= range.min && price <= range.max);
+      const matchesSearch = !term || searchText.includes(term);
+      const isVisible = inRange && matchesSearch;
 
-      card.hidden = !inRange;
-      if (inRange) visible++;
+      card.hidden = !isVisible;
+      if (isVisible) visible++;
       else {
         const compareCheck = card.querySelector?.(".console-compare-check");
         if (compareCheck && compareCheck.checked) compareCheck.checked = false;
@@ -276,9 +382,15 @@ function setupCatalogPriceFilter({ selectId, resultId, cardSelector, getPrice, o
 
     if (result) {
       const label = visible === 1 ? "item" : "itens";
-      result.textContent = range
-        ? `Mostrando ${visible} ${label} na faixa selecionada`
-        : `Mostrando todos (${visible} ${label})`;
+      if (term && range) {
+        result.textContent = `Mostrando ${visible} ${label} para a pesquisa e faixa selecionadas`;
+      } else if (term) {
+        result.textContent = `Mostrando ${visible} ${label} encontrados`;
+      } else if (range) {
+        result.textContent = `Mostrando ${visible} ${label} na faixa selecionada`;
+      } else {
+        result.textContent = `Mostrando todos (${visible} ${label})`;
+      }
     }
 
     try {
@@ -288,13 +400,15 @@ function setupCatalogPriceFilter({ selectId, resultId, cardSelector, getPrice, o
     }
   }
 
-  select.addEventListener("change", apply);
+  select?.addEventListener("change", apply);
+  search?.addEventListener("input", apply);
   apply();
 }
 
 function setupGameCatalogFilter() {
   setupCatalogPriceFilter({
     selectId: "gamePriceFilter",
+    searchId: "gameSearchInput",
     resultId: "gameFilterResult",
     cardSelector: ".produtos .produto",
     getPrice: (card) => {
@@ -306,6 +420,7 @@ function setupGameCatalogFilter() {
       );
       return parseBRLLikeNumber(priceEl?.textContent);
     },
+    getSearchText: getGameCardSearchText,
   });
 }
 
@@ -460,9 +575,3 @@ function setupConsoleBuy() {
 }
 
 setupConsoleBuy();
- 
- 
- 
- 
- 
-
