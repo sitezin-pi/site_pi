@@ -196,6 +196,7 @@ setupGamesTabs();
 function setupHomeGameSearch() {
   const search = document.getElementById("homeGameSearchInput");
   const result = document.getElementById("homeGameSearchResult");
+  const form = search?.closest("form");
   const pages = Array.from(document.querySelectorAll("#produtos [data-games-page]"));
   const arrows = Array.from(document.querySelectorAll("[data-games-prev], [data-games-next]"));
   if (!search || pages.length === 0) return;
@@ -266,6 +267,11 @@ function setupHomeGameSearch() {
   }
 
   search.addEventListener("input", apply);
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    apply();
+    document.getElementById("produtos")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
   apply();
 }
 
@@ -569,77 +575,3 @@ function setupConsoleBuy() {
 }
 
 setupConsoleBuy();
- 
- 
- 
- 
- // Dados dos produtos (extraídos do HTML original)
-const productsData = [
-  { name: 'GTA V', price: 150, image: 'https://th.bing.com/th/id/OPHS.RJTm7oN3v298Fw474C474?w=172&h=220&c=17&pid=21.1' },
-  { name: 'FIFA 26', price: 300, image: 'https://th.bing.com/th/id/OPHS.1DvQjWfv28puPw474C474?w=170&h=220&c=17&pid=21.1' },
-  { name: 'WWE 25', price: 237.40, image: 'https://www.bing.com/th?id=OPHS.lLi7DupbcouinA474C474' },
-  { name: 'Red Dead Redemption 2', price: 297, image: 'https://www.bing.com/th?id=OPHS.H4OpGzPu4g7gfQ474C474' }
-];
-
-// Mock do objeto Cart para evitar erros
-const Cart = {
-  addItem: (name, price) => {
-    console.log(`Adicionado ao carrinho: ${name} - R$ ${price}`);
-    alert(`${name} adicionado ao carrinho!`);
-  }
-};
-
-document.addEventListener('DOMContentLoaded', () => {
-  const searchInput = document.querySelector('input[type="search"]');
-  const productsContainer = document.querySelector('.produtos');
-  const originalProductsHTML = productsContainer.innerHTML;
-
-  // Função para renderizar produtos filtrados
-  const renderFilteredProducts = (query) => {
-    if (!query) {
-      productsContainer.innerHTML = originalProductsHTML;
-      return;
-    }
-
-    const filtered = productsData.filter(p => 
-      p.name.toLowerCase().includes(query.toLowerCase())
-    );
-
-    if (filtered.length === 0) {
-      productsContainer.innerHTML = '<p class="no-results">Nenhum jogo encontrado.</p>';
-      return;
-    }
-
-    productsContainer.innerHTML = filtered.map(p => `
-      <div class="produto">
-        <img src="${p.image}" alt="${p.name}">
-        <br> <br>
-        <p>${p.name}</p>
-        <p>Preço: R$ ${p.price.toFixed(2).replace('.', ',')}</p>
-        <br> 
-        <button onclick="Cart.addItem('${p.name}', ${p.price})">Adicionar</button>
-      </div>
-    `).join('');
-  };
-
-  // Evento de busca em tempo real com destaque visual
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value;
-    renderFilteredProducts(query);
-    
-    // Rolar para a seção de produtos se houver uma busca ativa
-    if (query.length > 0) {
-      const productsSection = document.getElementById('produtos');
-      productsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-
-  // Prevenir envio do formulário
-  const searchForm = document.querySelector('form[role="search"]');
-  searchForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    renderFilteredProducts(searchInput.value);
-  });
-});
-
-
