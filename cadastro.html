@@ -1,74 +1,86 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Play Zone - Cadastro</title>
-    <link rel="icon" type="image/jpeg" href="logo2.jpeg">
-    <link rel="stylesheet" href="cadastro.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Play Zone - Cadastro</title>
+  <link rel="icon" type="image/jpeg" href="logo2.jpeg">
+  <link rel="stylesheet" href="cadastro.css">
 </head>
 <body>
-    <main class="container">
-        <section class="header">
-            <h1>&#127918; Cadastro</h1>
-            <p>Crie sua conta na Play Zone</p>
-        </section>
+  <main class="auth-page">
+    <section class="auth-card">
+      <div class="auth-head">
+        <img class="auth-logo" src="logo2.jpeg" alt="Play Zone">
+        <div>
+          <p class="auth-kicker">Play Zone</p>
+          <h1>Cadastro</h1>
+        </div>
+      </div>
 
-        <section class="content">
-            <div id="successMessage" class="message success">
-                &#10003; Cadastro realizado com sucesso!
-            </div>
+      <p class="auth-text">Crie sua conta para comprar mais rápido e voltar à loja com tudo pronto.</p>
 
-            <div id="errorMessage" class="message error">
-                &#10007; Preencha todos os campos corretamente.
-            </div>
+      <div id="successMessage" class="message success">
+        &#10003; Cadastro realizado com sucesso!
+      </div>
 
-            <form id="cadastroForm">
-                <div class="form-group">
-                    <label for="nome">Nome completo</label>
-                    <input type="text" id="nome" name="nome" autocomplete="name" required>
-                </div>
+      <div id="errorMessage" class="message error">
+        &#10007; Preencha todos os campos corretamente.
+      </div>
 
-                <div class="form-group">
-                    <label for="email">E-mail</label>
-                    <input type="email" id="email" name="email" autocomplete="email" required>
-                </div>
+      <form id="cadastroForm" class="auth-form">
+        <div class="field">
+          <label for="nome">Nome completo</label>
+          <div class="field-shell">
+            <input type="text" id="nome" name="nome" autocomplete="name" required>
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="tel" id="telefone" name="telefone" autocomplete="tel">
-                </div>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <div class="field-shell">
+            <input type="email" id="email" name="email" autocomplete="email" required>
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label for="senha">Senha</label>
-                    <input type="password" id="senha" name="senha" minlength="6" autocomplete="new-password" required>
-                </div>
+        <div class="field">
+          <label for="telefone">Telefone</label>
+          <div class="field-shell">
+            <input type="tel" id="telefone" name="telefone" autocomplete="tel">
+          </div>
+        </div>
 
-                <div class="form-group">
-                    <label for="confirmarSenha">Confirmar senha</label>
-                    <input type="password" id="confirmarSenha" name="confirmarSenha" minlength="6" autocomplete="new-password" required>
-                </div>
+        <div class="field">
+          <label for="senha">Senha</label>
+          <div class="field-shell">
+            <input type="password" id="senha" name="senha" minlength="6" autocomplete="new-password" required>
+          </div>
+        </div>
 
-                <label class="terms" for="termos">
-                    <input type="checkbox" id="termos" name="termos" required>
-                    <span>Li e aceito os termos de uso da Play Zone.</span>
-                </label>
+        <div class="field">
+          <label for="confirmarSenha">Confirmar senha</label>
+          <div class="field-shell">
+            <input type="password" id="confirmarSenha" name="confirmarSenha" minlength="6" autocomplete="new-password" required>
+          </div>
+        </div>
 
-                <button class="button-submit" type="submit">Cadastrar</button>
-            </form>
+        <label class="terms" for="termos">
+          <input type="checkbox" id="termos" name="termos" required>
+          <span>Li e aceito os termos de uso da Play Zone.</span>
+        </label>
 
-            <p class="login-text">
-                J&aacute; tem uma conta? <a href="loguin.html">Entrar</a>
-            </p>
+        <button class="button-submit" type="submit">Cadastrar</button>
 
-            <div class="divider"></div>
+        <div class="auth-minimal-row">
+          <span>Já tem login?</span>
+          <a class="mini-button" href="loguin.html">Login</a>
+        </div>
 
-            <div class="back-area">
-                <button class="back-button" type="button" onclick="window.location.href='index.html'">Voltar para a loja</button>
-            </div>
-        </section>
-    </main>
+        <button class="back-button" type="button" onclick="window.location.href='index.html'">Voltar para a loja</button>
+      </form>
+    </section>
+  </main>
 
-    <script src="cadastro.js"> </script>
+  <script src="cadastro.js"></script>
 </body>
 </html>
