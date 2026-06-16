@@ -335,7 +335,7 @@ a {
   border: 1px solid rgba(217, 48, 37, 0.28);
   border-radius: 16px;
   background: linear-gradient(90deg, #d93025 0%, #ff6b6b 100%);
-  color: #ffffff;
+  color: #ffffff !important;
   font-size: 16px;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -357,7 +357,7 @@ a {
 }
 
 .checkout-btn:hover {
-  color: #ffffff;
+  color: #ffffff !important;
   border-color: rgba(217, 48, 37, 0.50);
   transform: translateY(-2px);
   box-shadow:
@@ -371,6 +371,7 @@ a {
 
 .checkout-btn:focus-visible {
   outline: none;
+  color: #ffffff !important;
   box-shadow:
     0 0 0 4px rgba(217, 48, 37, 0.16),
     0 24px 44px rgba(217, 48, 37, 0.24),
