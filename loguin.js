@@ -1,5 +1,14 @@
 const loginForm = document.getElementById("loginForm");
 const message = document.getElementById("message");
+const params = new URLSearchParams(window.location.search);
+const nextPage = params.get("next") || localStorage.getItem("checkout_redirect") || "index.html";
+
+const cadastroLink = document.querySelector('a[href="cadastro.html"]');
+if (cadastroLink) {
+  cadastroLink.href = `cadastro.html?next=${encodeURIComponent(nextPage)}`;
+  cadastroLink.removeAttribute("target");
+  cadastroLink.removeAttribute("rel");
+}
 
 function getLoginRedirectTarget() {
   const params = new URLSearchParams(window.location.search);
@@ -52,8 +61,15 @@ loginForm.addEventListener("submit", async function (event) {
     console.log("Usuario autenticado:", data);
 
     setTimeout(function () {
+
+      localStorage.removeItem("checkout_redirect");
+      window.location.href = nextPage;
+    }, 1000);
+
+
       window.location.href = redirectTarget;
     }, 900);
+
   } catch (error) {
     console.error("Erro ao fazer login:", error);
 
