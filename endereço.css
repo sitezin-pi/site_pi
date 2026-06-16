@@ -1,0 +1,109 @@
+
+body{
+
+display: flex;
+background-color: rgba(114, 114, 255, 0.973);
+justify-content: center;
+
+
+}
+
+
+
+
+#formEndereco{
+
+border-radius: 10px;
+width: 280px;    
+padding: 100px;
+background-color: rgb(98, 0, 255);
+
+
+}
+
+
+#cep{
+
+    width:250px ;
+padding:10px ;
+border-radius: 10px;
+
+
+}
+
+
+#rua{
+
+
+    width:250px ;
+padding:10px ;
+border-radius: 10px;
+    
+}
+
+#numero{
+
+    width:250px ;
+padding:10px ;
+border-radius: 10px;
+
+    
+}
+
+#complemento{
+
+
+    width:250px ;
+padding:10px ;
+border-radius: 10px;
+    
+}
+
+#bairro{
+
+    width:250px ;
+padding:10px ;
+border-radius: 10px;
+
+    
+}
+
+#cidade{
+
+
+    width:250px ;
+padding:10px ;
+border-radius: 10px;
+    
+}
+
+#estado{
+
+
+    width:250px ;
+padding:10px ;
+border-radius: 10px;
+    
+}
+
+#submit{
+
+    width:250px ;
+padding:10px ;
+border-radius: 10px;
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

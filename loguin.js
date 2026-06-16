@@ -1,5 +1,14 @@
 const loginForm = document.getElementById("loginForm");
 const message = document.getElementById("message");
+const params = new URLSearchParams(window.location.search);
+const nextPage = params.get("next") || localStorage.getItem("checkout_redirect") || "index.html";
+
+const cadastroLink = document.querySelector('a[href="cadastro.html"]');
+if (cadastroLink) {
+  cadastroLink.href = `cadastro.html?next=${encodeURIComponent(nextPage)}`;
+  cadastroLink.removeAttribute("target");
+  cadastroLink.removeAttribute("rel");
+}
 
 loginForm.addEventListener("submit", async function (event) {
   event.preventDefault();
@@ -39,7 +48,8 @@ loginForm.addEventListener("submit", async function (event) {
     console.log("Usuario autenticado:", data);
 
     setTimeout(function () {
-      window.location.href = "index.html";
+      localStorage.removeItem("checkout_redirect");
+      window.location.href = nextPage;
     }, 1000);
 
   } catch (error) {

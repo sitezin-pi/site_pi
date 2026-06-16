@@ -131,9 +131,7 @@ function updateCheckout(productsTotal) {
   finalEl.textContent = window.Cart.formatBRL(final);
 }
 
-function isLoggedIn() {
-  return Boolean(localStorage.getItem("token"));
-}
+const checkoutAddressPage = "enderço.html";
 
 document.addEventListener("DOMContentLoaded", () => {
   const btnClear = document.getElementById("btnLimpar");
@@ -164,15 +162,8 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (!isLoggedIn()) {
-      localStorage.setItem("checkout_redirect", "carrinho.html");
-      window.location.href = "loguin.html?next=carrinho.html";
-      return;
-    }
-
-    window.Cart?.clear?.();
-    renderCart();
-    alert("Compra finalizada com sucesso.");
+    localStorage.setItem("checkout_redirect", checkoutAddressPage);
+    window.location.href = `loguin.html?next=${encodeURIComponent(checkoutAddressPage)}`;
   });
 
   renderCart();

@@ -1,6 +1,13 @@
 var cadastroForm = document.getElementById('cadastroForm');
 var successMessage = document.getElementById('successMessage');
 var errorMessage = document.getElementById('errorMessage');
+var params = new URLSearchParams(window.location.search);
+var nextPage = params.get('next') || localStorage.getItem('checkout_redirect') || 'loguin.html';
+var loginLink = document.querySelector('.login-text a');
+
+if (loginLink) {
+    loginLink.href = 'loguin.html?next=' + encodeURIComponent(nextPage);
+}
 
 function mostrarMensagem(tipo, texto) {
     var mensagemAtual = tipo === 'success' ? successMessage : errorMessage;
@@ -68,13 +75,17 @@ cadastroForm.addEventListener('submit', function(evento) {
             return;
         }
 
-        localStorage.setItem('playZoneToken', resultado.data.token);
+        if (resultado.data.token) {
+            localStorage.setItem('token', resultado.data.token);
+            localStorage.setItem('playZoneToken', resultado.data.token);
+        }
 
         cadastroForm.reset();
         mostrarMensagem('success', 'Cadastro realizado com sucesso!');
 
         setTimeout(function() {
-            window.location.href = 'loguin.html';
+            localStorage.removeItem('checkout_redirect');
+            window.location.href = nextPage;
         }, 1500);
     })
     .catch(function() {
