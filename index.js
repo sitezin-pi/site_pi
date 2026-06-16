@@ -462,6 +462,62 @@ function createEl(tag, attrs = {}, children = []) {
   return el;
 }
 
+function readCartItemFromTrigger(trigger) {
+  const slide = trigger.closest?.(".promo-slide");
+  if (slide) {
+    const name = slide.querySelector(".promo-h")?.textContent?.trim() || "";
+    const price = parseBRLLikeNumber(slide.querySelector(".promo-to")?.textContent);
+    const image = slide.querySelector("img")?.getAttribute("src") || "";
+    if (name && Number.isFinite(price)) return { name, price, image };
+  }
+
+  const product = trigger.closest?.(".produto");
+  if (product) {
+    const paragraphs = Array.from(product.querySelectorAll("p"));
+    const name =
+      paragraphs.find((p) => !/R\$/i.test(String(p.textContent || "")))?.textContent?.trim() ||
+      product.querySelector("img")?.getAttribute("alt") ||
+      "";
+    const priceText = paragraphs.find((p) => /R\$/i.test(String(p.textContent || "")))?.textContent || "";
+    const price = parseBRLLikeNumber(priceText);
+    const image = product.querySelector("img")?.getAttribute("src") || "";
+    if (name && Number.isFinite(price)) return { name, price, image };
+  }
+
+  const consoleCard = trigger.closest?.(".card[data-console-card]");
+  if (consoleCard) {
+    const name = consoleCard.querySelector(".card-title")?.textContent?.trim() || "";
+    const price = parseBRLLikeNumber(consoleCard.querySelector(".card-text")?.textContent || "");
+    const image = consoleCard.querySelector("img")?.getAttribute("src") || "";
+    if (name && Number.isFinite(price)) return { name, price, image };
+  }
+
+  return null;
+}
+
+function setupCartImageCapture() {
+  document.addEventListener(
+    "click",
+    (e) => {
+      const target = e.target;
+      if (!target || !target.closest) return;
+
+      const trigger = target.closest('button[onclick*="Cart.addItem"], .console-buy');
+      if (!trigger) return;
+
+      const item = readCartItemFromTrigger(trigger);
+      if (!item) return;
+
+      e.preventDefault();
+      e.stopImmediatePropagation();
+      window.Cart?.addItem?.(item.name, item.price, 1, { image: item.image });
+    },
+    true
+  );
+}
+
+setupCartImageCapture();
+
 function setupConsoleCompare() {
   const grid = document.getElementById("consoleCompareGrid");
   if (!grid) return;

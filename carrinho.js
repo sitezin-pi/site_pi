@@ -171,8 +171,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     window.Cart?.clear?.();
-    renderCart();
     alert("Compra finalizada com sucesso.");
+    window.location.href = "carrinho.html";
   });
 
   renderCart();
