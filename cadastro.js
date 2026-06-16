@@ -9,6 +9,16 @@ if (loginLink) {
     loginLink.href = 'loguin.html?next=' + encodeURIComponent(nextPage);
 }
 
+function getNextLoginTarget() {
+    var checkoutRedirect = localStorage.getItem('checkout_redirect');
+
+    if (!checkoutRedirect || checkoutRedirect.includes('://')) {
+        return 'loguin.html';
+    }
+
+    return 'loguin.html?next=' + encodeURIComponent(checkoutRedirect.replace(/^\/+/, ''));
+}
+
 function mostrarMensagem(tipo, texto) {
     var mensagemAtual = tipo === 'success' ? successMessage : errorMessage;
     var outraMensagem = tipo === 'success' ? errorMessage : successMessage;
@@ -84,8 +94,12 @@ cadastroForm.addEventListener('submit', function(evento) {
         mostrarMensagem('success', 'Cadastro realizado com sucesso!');
 
         setTimeout(function() {
+
             localStorage.removeItem('checkout_redirect');
             window.location.href = nextPage;
+
+            window.location.href = getNextLoginTarget();
+
         }, 1500);
     })
     .catch(function() {

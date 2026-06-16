@@ -162,8 +162,20 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+
     localStorage.setItem("checkout_redirect", checkoutAddressPage);
     window.location.href = `loguin.html?next=${encodeURIComponent(checkoutAddressPage)}`;
+
+    if (!isLoggedIn()) {
+      localStorage.setItem("checkout_redirect", "carrinho.html");
+      window.location.href = "loguin.html?next=carrinho.html";
+      return;
+    }
+
+    window.Cart?.clear?.();
+    alert("Compra finalizada com sucesso.");
+    window.location.href = "carrinho.html";
+
   });
 
   renderCart();
