@@ -1,10 +1,12 @@
 
-body{
+#body{
 
 display: flex;
-background-color: rgba(114, 114, 255, 0.973);
+background-color:#eef2f8;
 justify-content: center;
-
+align-items: center;
+text-align: center;
+padding: 100px;
 
 }
 
@@ -12,11 +14,11 @@ justify-content: center;
 
 
 #formEndereco{
-
+    
 border-radius: 10px;
 width: 280px;    
 padding: 100px;
-background-color: rgb(98, 0, 255);
+background-color: #f8f9fc;
 
 
 }
