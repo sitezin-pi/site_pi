@@ -122,3 +122,10 @@ input:focus {
     opacity: 0.6;
     pointer-events: none;
 }
+.logo2 {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    object-fit: cover;
+  }
