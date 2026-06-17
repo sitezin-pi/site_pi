@@ -1,111 +1,124 @@
-
-#body{
-
-display: flex;
-background-color:#eef2f8;
-justify-content: center;
-align-items: center;
-text-align: center;
-padding: 100px;
-
+/* DESIGN FIEL À IMAGEM DE REFERÊNCIA */
+:root {
+    --primary-red: #e6524d;
+    --dark-blue: #0f1c2e;
+    --text-muted: #a0aec0;
+    --bg-page: #f8fafc;
+    --white: #ffffff;
+    --input-border: #e2e8f0;
+    --radius: 12px;
 }
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
-
-
-#formEndereco{
-    
-border-radius: 10px;
-width: 280px;    
-padding: 100px;
-background-color: #f8f9fc;
-
-
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-page);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-
-#cep{
-
-    width:250px ;
-padding:10px ;
-border-radius: 10px;
-
-
+.card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 420px;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
 }
 
-
-#rua{
-
-
-    width:250px ;
-padding:10px ;
-border-radius: 10px;
-    
+/* Ícone do Topo */
+.icon-header {
+    background-color: var(--dark-blue);
+    width: 45px;
+    height: 45px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 15px;
 }
 
-#numero{
-
-    width:250px ;
-padding:10px ;
-border-radius: 10px;
-
-    
+.icon-header svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
 }
 
-#complemento{
-
-
-    width:250px ;
-padding:10px ;
-border-radius: 10px;
-    
+.brand-tag {
+    color: var(--primary-red);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    display: block;
 }
 
-#bairro{
-
-    width:250px ;
-padding:10px ;
-border-radius: 10px;
-
-    
+h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    margin-bottom: 30px;
 }
 
-#cidade{
-
-
-    width:250px ;
-padding:10px ;
-border-radius: 10px;
-    
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-#estado{
-
-
-    width:250px ;
-padding:10px ;
-border-radius: 10px;
-    
+input {
+    width: 100%;
+    padding: 14px 16px;
+    font-size: 15px;
+    border: 1.5px solid var(--input-border);
+    border-radius: var(--radius);
+    color: var(--dark-blue);
+    outline: none;
+    transition: border-color 0.2s;
 }
 
-#submit{
-
-    width:250px ;
-padding:10px ;
-border-radius: 10px;
-
-    
+input::placeholder {
+    color: var(--text-muted);
 }
 
+input:focus {
+    border-color: var(--primary-red);
+}
 
+/* Layout de Colunas */
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
 
+/* Botão Continuar */
+.btn-continue {
+    background-color: var(--primary-red);
+    color: white;
+    padding: 16px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: opacity 0.2s;
+    box-shadow: 0 4px 10px rgba(230, 82, 77, 0.2);
+}
 
+.btn-continue:hover {
+    opacity: 0.9;
+}
 
-
-
-
-
-
-
-
-
+.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
