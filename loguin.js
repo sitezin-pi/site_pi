@@ -59,21 +59,22 @@ loginForm.addEventListener("submit", async function (event) {
     message.className = "auth-message success";
 
     console.log("Usuario autenticado:", data);
+   
 
-    setTimeout(function () {
-
+    setTimeout(() => {
       localStorage.removeItem("checkout_redirect");
       window.location.href = nextPage;
     }, 1000);
 
-
+    
+    setTimeout(() => {
       window.location.href = redirectTarget;
     }, 900);
 
   } catch (error) {
     console.error("Erro ao fazer login:", error);
-
     message.textContent = "Erro ao conectar com o servidor.";
     message.className = "auth-message error";
   }
 });
+
