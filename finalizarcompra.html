@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Realizada com Sucesso!</title>
+    <link rel="stylesheet" href="finalizarcompra.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="success-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+            </svg>
+        </div>
+        <h1>Obrigado pela sua compra!</h1>
+        <p>Seu pedido foi processado com sucesso. Você receberá um e-mail de confirmação em instantes com os detalhes da entrega.</p>
+        
+        <div class="order-details">
+            <div class="order-item">
+                <span>Número do Pedido:</span>
+                <span id="order-id">#00000000</span>
+            </div>
+            <div class="order-item">
+                <span>Data:</span>
+                <span id="order-date">-- de --, ----</span>
+            </div>
+            <div class="order-item">
+                <span>Total:</span>
+                <span id="order-total">R$ 0,00</span>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <a href="index.html" class="btn btn-secondary">Continuar Comprando</a>
+        </div>
+    </div>
+
+    <script src="finalizarcompra.js"></script>
+</body>
+</html>
