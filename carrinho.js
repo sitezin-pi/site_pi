@@ -131,6 +131,35 @@ function updateCheckout(productsTotal) {
   finalEl.textContent = window.Cart.formatBRL(final);
 }
 
+function getCheckoutSummary() {
+  const items = window.Cart?.load?.() ?? [];
+  const shippingSelect = document.getElementById("shippingOption");
+  const paymentSelect = document.getElementById("paymentMethod");
+  const productsTotal = window.Cart.getTotal(items);
+  const shipping = items.length ? Number(shippingSelect?.value || 0) : 0;
+  const payment = paymentSelect?.value || "pix";
+
+  let discountRate = 0;
+  if (items.length && payment === "pix") discountRate = 0.05;
+  if (items.length && payment === "boleto") discountRate = 0.02;
+
+  const discount = productsTotal * discountRate;
+  const final = productsTotal + shipping - discount;
+
+  return {
+    productsTotal,
+    shipping,
+    discount,
+    final,
+    payment,
+    itemsCount: window.Cart.getCount(items),
+  };
+}
+
+function saveCheckoutSummary() {
+  localStorage.setItem("checkout_summary_v1", JSON.stringify(getCheckoutSummary()));
+}
+
 const checkoutAddressPage = "enderço.html";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -162,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    saveCheckoutSummary();
 
     localStorage.setItem("checkout_redirect", checkoutAddressPage);
     window.location.href = `loguin.html?next=${encodeURIComponent(checkoutAddressPage)}`;
