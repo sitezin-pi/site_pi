@@ -12,15 +12,23 @@ document.addEventListener('DOMContentLoaded', () => {
         orderDateElement.innerText = new Date().toLocaleDateString('pt-BR', options);
     }
 
+    const checkoutSummary = getCheckoutSummary();
     const orderTotalElement = document.getElementById('order-total');
     if (orderTotalElement) {
-        const checkoutSummary = getCheckoutSummary();
         orderTotalElement.innerText = formatBRL(checkoutSummary?.final ?? 0);
+    }
+
+    if (checkoutSummary) {
+        clearCartAfterCheckout();
     }
 
     // Efeito de confete
     createConfetti();
 });
+
+function clearCartAfterCheckout() {
+    localStorage.removeItem('gamestore_cart_v1');
+}
 
 function getCheckoutSummary() {
     try {
