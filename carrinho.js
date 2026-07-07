@@ -28,6 +28,9 @@ function renderCart() {
     image.className = "cart-item-image";
     image.src = item.image || "logo2.jpeg";
     image.alt = item.name;
+    image.addEventListener("error", () => {
+      image.src = "logo2.jpeg";
+    });
     media.appendChild(image);
 
     const content = document.createElement("div");

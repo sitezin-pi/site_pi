@@ -484,7 +484,7 @@ function readCartItemFromTrigger(trigger) {
     if (name && Number.isFinite(price)) return { name, price, image };
   }
 
-  const consoleCard = trigger.closest?.(".card[data-console-card]");
+  const consoleCard = trigger.closest?.(".card[data-console-card], .consoles .card");
   if (consoleCard) {
     const name = consoleCard.querySelector(".card-title")?.textContent?.trim() || "";
     const price = parseBRLLikeNumber(consoleCard.querySelector(".card-text")?.textContent || "");
@@ -624,9 +624,10 @@ function setupConsoleBuy() {
     const name = card.querySelector?.(".card-title")?.textContent?.trim();
     const priceText = card.querySelector?.(".card-text")?.textContent?.trim();
     const price = parseBRLLikeNumber(priceText);
+    const image = card.querySelector?.("img")?.getAttribute?.("src") || "";
 
     if (!name || !Number.isFinite(price)) return;
-    window.Cart.addItem(name, price);
+    window.Cart.addItem(name, price, 1, { image });
   });
 }
 
