@@ -160,6 +160,10 @@ function saveCheckoutSummary() {
   localStorage.setItem("checkout_summary_v1", JSON.stringify(getCheckoutSummary()));
 }
 
+function isLoggedIn() {
+  return Boolean(localStorage.getItem("token") || localStorage.getItem("playZoneToken"));
+}
+
 const checkoutAddressPage = "enderço.html";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -193,19 +197,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     saveCheckoutSummary();
 
-    localStorage.setItem("checkout_redirect", checkoutAddressPage);
-    window.location.href = `loguin.html?next=${encodeURIComponent(checkoutAddressPage)}`;
-
     if (!isLoggedIn()) {
-      localStorage.setItem("checkout_redirect", "carrinho.html");
-      window.location.href = "loguin.html?next=carrinho.html";
+      localStorage.setItem("checkout_redirect", checkoutAddressPage);
+      window.location.href = `loguin.html?next=${encodeURIComponent(checkoutAddressPage)}`;
       return;
     }
 
-    window.Cart?.clear?.();
-    alert("Compra finalizada com sucesso.");
-    window.location.href = "carrinho.html";
-
+    window.location.href = checkoutAddressPage;
   });
 
   renderCart();

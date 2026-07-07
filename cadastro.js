@@ -98,8 +98,6 @@ cadastroForm.addEventListener('submit', function(evento) {
             localStorage.removeItem('checkout_redirect');
             window.location.href = nextPage;
 
-            window.location.href = getNextLoginTarget();
-
         }, 1500);
     })
     .catch(function() {

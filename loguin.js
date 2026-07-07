@@ -62,12 +62,6 @@ loginForm.addEventListener("submit", async function (event) {
    
 
     setTimeout(() => {
-      localStorage.removeItem("checkout_redirect");
-      window.location.href = nextPage;
-    }, 1000);
-
-    
-    setTimeout(() => {
       window.location.href = redirectTarget;
     }, 900);
 
